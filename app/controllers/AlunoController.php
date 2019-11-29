@@ -11,7 +11,7 @@ class AlunoController extends Controller
 
     public static function store()
     {
-        // TODO: Implement store() method.
+        echo "chegou aqui carai";
     }
 
     public static function edit()

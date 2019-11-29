@@ -4,7 +4,13 @@ use Controllers\AlunoController;
 use Controllers\HomeController;
 
 $routes = [
-    '/' => HomeController::index(),
-    'alunos' => AlunoController::index(),
-    'alunos/create' => AlunoController::store()
+    '/' => function(){
+        HomeController::index();
+    },
+    'alunos' => function(){
+        AlunoController::index();
+    },
+    'alunos/create' => function(){
+        AlunoController::store();
+    }
 ];

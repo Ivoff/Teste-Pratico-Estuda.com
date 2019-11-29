@@ -4,19 +4,17 @@ namespace Routes;
 
 class Router
 {
-
-    private $routes = [];
-
     public static function route($path)
     {
         if(strcmp($path, "/") != 0)
             $path = trim($path, "/");
 
-        $router = new self();
+        require 'routes.php';
 
-        $router->routes = require 'routes.php';
-
-        call_user_func($router->routes[$path]);
+        if(key_exists($path, $routes))
+            call_user_func($routes[$path]);
+        else
+            die("Rota nao existe");
     }
 
 }

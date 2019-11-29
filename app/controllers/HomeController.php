@@ -6,6 +6,6 @@ class HomeController extends Controller {
 
     public static function index()
     {
-        echo "funciona";
+        require 'public/index.php';
     }
 }

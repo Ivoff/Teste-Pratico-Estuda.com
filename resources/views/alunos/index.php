@@ -1,11 +1,15 @@
 <!DOCTYPE HTML>
+
+<?php
+    session_start();
+?>
+
 <html>
 <head>
     <title>Alunos</title>
 </head>
 <body>
-    <?=parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);?>
-    <form>
+    <form action="alunos/create" method="post">
         <div>
             <label for="aluno_nome">Nome</label>
             <input type="text" name="aluno_nome" id="aluno_nome" autocomplete="false" required>
