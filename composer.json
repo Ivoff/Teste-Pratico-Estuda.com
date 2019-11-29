@@ -1,0 +1,17 @@
+{
+    "name": "zilas/sca",
+    "description": "Teste pratico para destágio dev estuda.com",
+    "authors": [
+        {
+            "name": "ivoff",
+            "email": "pyeroevo@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\": "database/"
+        }
+    }
+}
