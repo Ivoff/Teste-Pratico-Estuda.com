@@ -4,8 +4,8 @@ namespace Controllers;
 
 interface IController
 {
-    public function index();
-    public function store();
-    public function edit();
-    public function destroy();
+    public static function index();
+    public static  function store();
+    public static  function edit();
+    public static  function destroy();
 }

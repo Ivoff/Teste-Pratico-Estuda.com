@@ -4,23 +4,22 @@ namespace Controllers;
 
 class AlunoController implements IController
 {
-
-    public function index()
+    public static function index()
     {
-        // TODO: Implement index() method.
+
     }
 
-    public function store()
+    public static function store()
     {
         // TODO: Implement store() method.
     }
 
-    public function edit()
+    public static function edit()
     {
         // TODO: Implement edit() method.
     }
 
-    public function destroy()
+    public static function destroy()
     {
         // TODO: Implement destroy() method.
     }
