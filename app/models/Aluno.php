@@ -118,14 +118,17 @@ class Aluno implements IModel{
         try
         {
             $con = Connection::con();
+
             $statement = $con->prepare($sql);
-            var_dump($statement->execute([
+
+            $statement->execute([
                 ':nome' => $this->nome,
                 ':telefone' => $this->telefone,
                 ':email' => $this->email,
                 ':data_nascimento' => $this->datNasc,
                 'genero' => $this->genero
-            ]));
+            ]);
+
         }catch (Exception $e)
         {
             die($e->getMessage());

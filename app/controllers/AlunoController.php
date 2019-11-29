@@ -2,11 +2,11 @@
 
 namespace Controllers;
 
-class AlunoController implements IController
+class AlunoController extends Controller
 {
     public static function index()
     {
-
+        // TODO: Implement index() method.
     }
 
     public static function store()
