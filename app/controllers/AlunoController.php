@@ -24,6 +24,7 @@ class AlunoController extends Controller
             $aluno->setGenero($_POST['aluno_genero']);
             $aluno->save();
         }
+        Router::route("alunos");
     }
 
     public static function edit()

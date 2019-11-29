@@ -1,4 +1,18 @@
 <!DOCTYPE HTML>
+
+<?php
+ /*
+  * Script para evitar a resubmissao do formulario
+  * alterando o header para fazer requisicao da
+  * mesma pagina so que por GET
+  */
+    if(isset($_POST['aluno_create']))
+    {
+        header("Location: /alunos");
+        return;
+    }
+?>
+
 <html>
 <head>
     <title>Alunos</title>
