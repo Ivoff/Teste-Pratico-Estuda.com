@@ -5,17 +5,24 @@ namespace Database;
 use PDO;
 use PDOException;
 
-class Connection {
-    public static function connect($host, $dbname, $user, $password){
+class Connection{
+
+    private $host;
+    private $dbname;
+    private $username;
+    private $password;
+    private $con;
+
+    public static function con()
+    {
         try
         {
-            $con = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
-            $con->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+            $con = new PDO("mysql:host=localhost;dbname=sca", "admin", "123");
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $con;
-        }catch (PDOException $e)
+        }catch(PDOException $e)
         {
-            $e->getMessage();
-            die();
+            die($e->getMessage());
         }
     }
 }

@@ -110,30 +110,25 @@ class Aluno implements IModel{
         $this->genero = $genero;
     }
 
-    public function create()
+    public function save()
     {
-        $sql = "ISERT INTO alunos(nome, telefone, email, data_nascimento, genero) 
+        $sql = "INSERT INTO alunos(nome, telefone, email, data_nascimento, genero) 
         VALUES(:nome, :telefone, :email, :data_nascimento, :genero)";
 
-        $con = Connection::connect("localhost", "SCA", "admin", "123");
         try
         {
-            $con->beginTransaction();
-
+            $con = Connection::con();
             $statement = $con->prepare($sql);
-            $statement->bindParam(":nome", $this->nome);
-            $statement->bindParam(":telefone", $this->telefone);
-            $statement->bindParam(":email", $this->email);
-            $statement->bindParam(":data_nascimento", $this->datNasc);
-            $statement->bindParam(":genero", $this->genero);
-            $statement->execute();
-
-            $con->commit();
+            var_dump($statement->execute([
+                ':nome' => $this->nome,
+                ':telefone' => $this->telefone,
+                ':email' => $this->email,
+                ':data_nascimento' => $this->datNasc,
+                'genero' => $this->genero
+            ]));
         }catch (Exception $e)
         {
-            $con->rollBack();
-            $e->getMessage();
-            die();
+            die($e->getMessage());
         }
     }
 
