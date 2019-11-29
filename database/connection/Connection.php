@@ -5,11 +5,13 @@ namespace Database;
 use PDO;
 use PDOException;
 
-class Db {
+class Connection {
     public static function connect($host, $dbname, $user, $password){
         try
         {
-            return new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+            $con = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+            $con->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+            return $con;
         }catch (PDOException $e)
         {
             $e->getMessage();
