@@ -1,15 +1,12 @@
 <!DOCTYPE HTML>
-
-<?php
-    session_start();
-?>
-
 <html>
 <head>
     <title>Alunos</title>
 </head>
 <body>
-    <form action="alunos/create" method="post">
+    <form action="alunos/create" method="POST">
+        <input type="hidden" name="aluno_create" value="true">
+
         <div>
             <label for="aluno_nome">Nome</label>
             <input type="text" name="aluno_nome" id="aluno_nome" autocomplete="false" required>
