@@ -1,8 +1,10 @@
 <?php
 
+namespace Controllers;
+
 use App\Models\Turma;
-use Controllers\Controller;
 use Resources\Views\View;
+use Routes\Router;
 
 class TurmaController extends Controller
 {
@@ -14,7 +16,18 @@ class TurmaController extends Controller
 
     public static function store()
     {
-        //TODO: implement this controller
+        if(isset($_POST['turma_create']))
+        {
+            $turma = new Turma();
+
+            $turma->setAno($_POST['turma_ano']);
+            $turma->setNivelEnsino($_POST['turma_nivelEnsino']);
+            $turma->setSerie($_POST['turma_serie']);
+            $turma->setEscola($_POST['turma_turno']);
+
+            $turma->save();
+        }
+        Router::route('turmas');
     }
 
     public static function edit()

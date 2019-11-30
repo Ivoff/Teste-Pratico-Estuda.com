@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Database\Connection;
 use Exception;
+use PDO;
 
 class Turma implements IModel {
 
