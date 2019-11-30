@@ -15,5 +15,8 @@ $routes = [
     },
     'alunos/destroy' => function(){
         AlunoController::destroy();
+    },
+    'alunos/edit' => function(){
+        AlunoController::edit();
     }
 ];

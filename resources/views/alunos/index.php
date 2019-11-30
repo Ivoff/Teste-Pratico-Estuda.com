@@ -6,9 +6,9 @@
   * alterando o header para fazer requisicao da
   * mesma pagina so que por GET
   */
-    if(isset($_POST['aluno_create']))
+    if(isset($_POST['aluno_create']) or isset($_POST['destroy']))
     {
-        header("Location: /aluno");
+        header("Location: /alunos");
         return;
     }
 ?>
@@ -18,7 +18,6 @@
     <title>Alunos</title>
 </head>
 <body>
-
     <form action="" method="GET">
         <input type="hidden" name="search" value="true">
         Busca<input type="text" name="query" autocomplete="false">
@@ -77,14 +76,18 @@
                         <td><?=$value['data_nascimento']?></td>
                         <td><?=$value['genero']?></td>
                         <td>
-                            <a href="">
+                            <form action="alunos/destroy" method="POST">
+                                <input type="hidden" name="destroy" value="true">
+                                <input type="hidden" name="id" value="<?=$value['id']?>">
                                 <button>excluir</button>
-                            </a>
+                            </form>
                         </td>
                         <td>
-                            <a>
+                            <form action="alunos/edit" method="POST">
+                                <input type="hidden" name="edit" value="true">
+                                <input type="hidden" name="id" value="<?=$value['id']?>">
                                 <button>editar</button>
-                            </a>
+                            </form>
                         </td>
                     </tr>
                 <?php

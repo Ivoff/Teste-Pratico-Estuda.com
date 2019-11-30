@@ -116,7 +116,7 @@ class Aluno implements IModel{
     {
         if($this->getId() > 0)
         {
-            $sql = "UPDATE aluno SET nome=:nome, telefone=:telefone, 
+            $sql = "UPDATE alunos SET nome=:nome, telefone=:telefone, 
             email=:email, data_nascimento=:data_nascimento, genero=:genero 
             WHERE id=:id";
 
@@ -143,7 +143,7 @@ class Aluno implements IModel{
         }
         else
         {
-            $sql = "INSERT INTO aluno(nome, telefone, email, data_nascimento, 
+            $sql = "INSERT INTO alunos(nome, telefone, email, data_nascimento, 
             genero) VALUES(:nome, :telefone, :email, :data_nascimento, :genero)";
 
             $con = Connection::con();
@@ -172,7 +172,7 @@ class Aluno implements IModel{
 
     public function read($id)
     {
-        $sql = "SELECT * FROM aluno WHERE id = $id LIMIT 1";
+        $sql = "SELECT * FROM alunos WHERE id = $id LIMIT 1";
 
         $con = Connection::con();
 
@@ -199,7 +199,7 @@ class Aluno implements IModel{
 
     public function delete()
     {
-        $sql = "DELETE * FROM aluno WHERE id = $this->id";
+        $sql = "DELETE FROM alunos WHERE alunos.id = $this->id";
 
         $con = Connection::con();
 

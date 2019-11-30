@@ -26,7 +26,7 @@ class AlunoController extends Controller
             $aluno->setGenero($_POST['aluno_genero']);
             $aluno->save();
         }
-        Router::route("aluno");
+        Router::route("alunos");
     }
 
     public static function edit()
@@ -36,6 +36,14 @@ class AlunoController extends Controller
 
     public static function destroy()
     {
-        // TODO: Implement destroy() method.
+        if(isset($_POST['destroy']))
+        {
+            $aluno = new Aluno();
+            $aluno->read($_POST['id']);
+            var_dump($aluno->getId());
+            $aluno->delete();
+        }
+        echo " saiu?";
+        Router::route("alunos");
     }
 }

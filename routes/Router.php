@@ -20,9 +20,6 @@ class Router
 
     public static function doGet($path){
 
-        if(strcmp($path, "/") != 0)
-            $path = trim($path, "/");
-
         preg_match('/[?]/', $path, $matches, PREG_OFFSET_CAPTURE);
 
         $uri = explode('?', $path)[0];
@@ -35,6 +32,9 @@ class Router
         {
             $_GET[$paramsRaw[$i]] = $paramsRaw[$i+1];
         }
+
+        if(strcmp($uri, "/") != 0)
+            $path = trim($uri, "/");
 
         require 'routes.php';
 
