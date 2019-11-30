@@ -18,5 +18,8 @@ $routes = [
     },
     'alunos/edit' => function(){
         AlunoController::edit();
+    },
+    'alunos/search' => function(){
+        AlunoController::search();
     }
 ];

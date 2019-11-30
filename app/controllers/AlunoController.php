@@ -57,4 +57,34 @@ class AlunoController extends Controller
         }
         Router::route("alunos");
     }
+
+    public static function search()
+    {
+        if(isset($_GET['search'])) {
+            $nome = $_GET['query'];
+
+            $query = null;
+
+            $pieces = explode(' ', $nome);
+
+            if(count($pieces) == 1)
+            {
+                $query = $pieces[0];
+                $query = '+'.$query.'*';
+            }
+            else
+            {
+                for($i = 0; $i < count($pieces); $i += 1)
+                {
+                    if($i == count($pieces)-1)
+                        $query = $query . '+' . $pieces[$i];
+                    else
+                        $query = $query . '+' . $pieces[$i] . ' ';
+                }
+            }
+
+            $alunoView = new View('resources/views/alunos/index.php');
+            $alunoView->with(["list" => Aluno::search($query)], "POST")->redirect();
+        }
+    }
 }

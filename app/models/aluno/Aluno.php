@@ -234,4 +234,24 @@ class Aluno implements IModel{
         }
 
     }
+
+    public static function search($query)
+    {
+        $sql = "SELECT * FROM alunos WHERE MATCH(nome) AGAINST('".$query."' IN BOOLEAN MODE)";
+
+        $con = Connection::con();
+
+        try
+        {
+
+            $stamement = $con->prepare($sql);
+            $stamement ->execute();
+
+            return $stamement->fetchAll(PDO::FETCH_ASSOC);
+
+        }catch (Exception $e)
+        {
+            die($e->getMessage());
+        }
+    }
 }

@@ -7,4 +7,5 @@ interface IModel{
     public function read($id);
     public function delete();
     public static function all();
+    public static function search($query);
 }

@@ -11,7 +11,6 @@
 
     if(isset($_POST['aluno_create']) or isset($_POST['destroy']))
     {
-        echo "entrou";
         header("Location: /alunos");
         return;
     }
@@ -27,9 +26,10 @@
 </head>
 <body>
 
-    <form action="" method="GET">
+    <form action="/alunos/search" method="GET">
         <input type="hidden" name="search" value="true">
         Busca<input type="text" name="query" autocomplete="false">
+        <button type="submit">buscar</button>
     </form>
 
     <br/>
