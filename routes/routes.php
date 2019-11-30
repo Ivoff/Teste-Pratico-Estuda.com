@@ -12,5 +12,8 @@ $routes = [
     },
     'alunos/create' => function(){
         AlunoController::store();
+    },
+    'alunos/destroy' => function(){
+        AlunoController::destroy();
     }
 ];

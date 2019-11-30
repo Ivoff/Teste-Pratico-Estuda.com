@@ -77,7 +77,7 @@
                         <td><?=$value['data_nascimento']?></td>
                         <td><?=$value['genero']?></td>
                         <td>
-                            <a>
+                            <a href="">
                                 <button>excluir</button>
                             </a>
                         </td>
