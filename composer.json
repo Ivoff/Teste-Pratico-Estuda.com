@@ -12,8 +12,6 @@
         "psr-4": {
             "App\\": "app/",
             "App\\Models\\": "app/models/",
-            "App\\Models\\Aluno\\": "app/models/aluno/",
-            "App\\Models\\Escola\\": "app/models/escola/",
             "Controllers\\": "app/controllers/",
             "Resources\\": "resources/",
             "Resources\\Views\\": "resources/views/",

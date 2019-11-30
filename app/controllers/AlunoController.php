@@ -4,7 +4,7 @@ namespace Controllers;
 
 use Resources\Views\View;
 use Routes\Router;
-use App\Models\Aluno\Aluno;
+use App\Models\Aluno;
 
 class AlunoController extends Controller
 {

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models\Aluno;
+namespace App\Models;
 
-use App\Models\IModel;
 use Database\Connection;
 use Exception;
 use PDO;

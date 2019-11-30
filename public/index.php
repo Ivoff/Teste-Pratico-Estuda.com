@@ -6,7 +6,7 @@
 <body>
     <a href="alunos">Alunos</a>
     <?php
-        use App\Models\Aluno\Aluno;
+        use App\Models\Aluno;
         $var = new Aluno();
         $var->read(1);
     ?>

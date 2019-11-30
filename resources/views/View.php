@@ -2,8 +2,6 @@
 
 namespace Resources\Views;
 
-use Routes\Router;
-
 class View {
 
     private $filePath;

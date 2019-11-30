@@ -19,8 +19,13 @@ class Escola implements IModel {
         // TODO: Implement save() method.
     }
 
-    public function all()
+    public static function all()
     {
         // TODO: Implement all() method.
+    }
+
+    public static function search($query)
+    {
+        // TODO: Implement search() method.
     }
 }
