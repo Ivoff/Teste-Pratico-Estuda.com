@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Database\Connection;
 use Exception;
+use PDO;
 
 class Aluno implements IModel{
 
@@ -112,41 +113,124 @@ class Aluno implements IModel{
 
     public function save()
     {
-        $sql = "INSERT INTO alunos(nome, telefone, email, data_nascimento, genero) 
-        VALUES(:nome, :telefone, :email, :data_nascimento, :genero)";
-
-        try
+        if($this->getId() > 0)
         {
+            $sql = "UPDATE alunos SET nome=:nome, telefone=:telefone, 
+            email=:email, data_nascimento=:data_nascimento, genero=:genero 
+            WHERE id=:id";
+
             $con = Connection::con();
 
+            try
+            {
+                $statement = $con->prepare($sql);
+
+                $statement->execute([
+                    ':id' => $this->id,
+                    ':nome' => $this->nome,
+                    ':telefone' => $this->telefone,
+                    ':email' => $this->email,
+                    ':data_nascimento' => $this->datNasc,
+                    'genero' => $this->genero
+                ]);
+
+                return;
+            }catch (Exception $e)
+            {
+                die($e->getMessage());
+            }
+        }
+        else
+        {
+            $sql = "INSERT INTO alunos(nome, telefone, email, data_nascimento, 
+            genero) VALUES(:nome, :telefone, :email, :data_nascimento, :genero)";
+
+            $con = Connection::con();
+
+            try
+            {
+                $statement = $con->prepare($sql);
+
+                $statement->execute([
+                    ':nome' => $this->nome,
+                    ':telefone' => $this->telefone,
+                    ':email' => $this->email,
+                    ':data_nascimento' => $this->datNasc,
+                    'genero' => $this->genero
+                ]);
+
+                return;
+            }catch (Exception $e)
+            {
+                die($e->getMessage());
+            }
+        }
+
+
+    }
+
+    public function read($id)
+    {
+        $sql = "SELECT * FROM alunos WHERE id = $id LIMIT 1";
+
+        $con = Connection::con();
+
+        try{
+
             $statement = $con->prepare($sql);
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $statement->closeCursor();
 
-            $statement->execute([
-                ':nome' => $this->nome,
-                ':telefone' => $this->telefone,
-                ':email' => $this->email,
-                ':data_nascimento' => $this->datNasc,
-                'genero' => $this->genero
-            ]);
+            $this->setId($result['id']);
+            $this->setNome($result['nome']);
+            $this->setDatNasc($result['data_nascimento']);
+            $this->setTelefone($result['telefone']);
+            $this->setEmail($result['email']);
+            $this->setGenero($result['genero']);
 
+            return;
         }catch (Exception $e)
         {
             die($e->getMessage());
         }
     }
 
-    public function read()
-    {
-        // TODO: Implement read() method.
-    }
-
-    public function update()
-    {
-        // TODO: Implement update() method.
-    }
-
     public function delete()
     {
-        // TODO: Implement delete() method.
+        $sql = "DELETE * FROM alunos WHERE id = $this->id";
+
+        $con = Connection::con();
+
+        try
+        {
+            $con->exec($sql);
+
+            return;
+        }catch (Exception $e)
+        {
+            die($e->getMessage());
+        }
+    }
+
+    public function all()
+    {
+        $sql = "SELECT * FROM alunos";
+
+        $con = Connection::con();
+
+        try
+        {
+
+            $statement = $con->prepare($sql);
+            $statement->execute();
+
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        }catch (Exception $e)
+        {
+            die($e->getMessage());
+        }
+
     }
 }
