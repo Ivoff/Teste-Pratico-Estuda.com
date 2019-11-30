@@ -11,7 +11,7 @@ class AlunoController extends Controller
     public static function index()
     {
         $alunoView = new View('resources/views/alunos/index.php');
-        $alunoView->with("lista", Aluno::all())->redirect();
+        $alunoView->with("list", Aluno::all())->redirect();
     }
 
     public static function store()

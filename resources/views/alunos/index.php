@@ -18,6 +18,14 @@
     <title>Alunos</title>
 </head>
 <body>
+
+    <form action="" method="GET">
+        <input type="hidden" name="search" value="true">
+        Busca<input type="text" name="query" autocomplete="false">
+    </form>
+
+    <br/>
+
     <form action="alunos/create" method="POST">
         <input type="hidden" name="aluno_create" value="true">
 
@@ -55,11 +63,35 @@
             <th>Email</th>
             <th>Telefone</th>
             <th>DatNasc</th>
+            <th>Genero</th>
             <th colspan="2"></th>
         </thead>
         <tbody>
-
+            <?php
+                foreach ($_POST['list'] as $value ) {
+                ?>
+                    <tr>
+                        <td><?=$value['nome']?></td>
+                        <td><?=$value['telefone']?></td>
+                        <td><?=$value['email']?></td>
+                        <td><?=$value['data_nascimento']?></td>
+                        <td><?=$value['genero']?></td>
+                        <td>
+                            <a>
+                                <button>excluir</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <button>editar</button>
+                            </a>
+                        </td>
+                    </tr>
+                <?php
+                }
+            ?>
         </tbody>
     </table>
+
 </body>
 </html>
