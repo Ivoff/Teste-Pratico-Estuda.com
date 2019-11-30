@@ -21,5 +21,8 @@ $routes = [
     },
     'alunos/search' => function(){
         AlunoController::search();
+    },
+    'turmas' => function(){
+        TurmaController::index();
     }
 ];
