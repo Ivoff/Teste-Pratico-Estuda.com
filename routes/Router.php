@@ -20,8 +20,6 @@ class Router
 
     public static function doGet($path){
 
-        preg_match('/[?]/', $path, $matches, PREG_OFFSET_CAPTURE);
-
         $uri = explode('?', $path)[0];
 
         $paramsRaw = explode('?', $path)[1];
@@ -38,8 +36,8 @@ class Router
 
         require 'routes.php';
 
-        if(key_exists($uri, $routes))
-            call_user_func($routes[$uri]);
+        if(key_exists($path, $routes))
+            call_user_func($routes[$path]);
         else
             die("Rota nao existe");
     }

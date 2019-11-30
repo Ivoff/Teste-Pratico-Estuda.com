@@ -10,8 +10,9 @@ class AlunoController extends Controller
 {
     public static function index()
     {
+        //'resources/views/alunos/index.php'
         $alunoView = new View('resources/views/alunos/index.php');
-        $alunoView->with("list", Aluno::all())->redirect();
+        $alunoView->with(["list" => Aluno::all()], "POST")->redirect();
     }
 
     public static function store()
@@ -19,11 +20,14 @@ class AlunoController extends Controller
         if(isset($_POST['aluno_create']))
         {
             $aluno = new Aluno();
+
+            $aluno->setId((int) $_POST['aluno_id']);
             $aluno->setNome($_POST['aluno_nome']);
             $aluno->setDatNasc($_POST['aluno_nasc']);
             $aluno->setEmail($_POST['aluno_email']);
             $aluno->setTelefone($_POST['aluno_telefone']);
             $aluno->setGenero($_POST['aluno_genero']);
+
             $aluno->save();
         }
         Router::route("alunos");
@@ -31,7 +35,16 @@ class AlunoController extends Controller
 
     public static function edit()
     {
-        // TODO: Implement edit() method.
+        if(isset($_GET['edit']))
+        {
+            $aluno = new Aluno();
+            $aluno->read($_GET['edit_id']);
+
+            $alunoView = new View('resources/views/alunos/index.php');
+            $alunoView->with(['edit_data' => $aluno], "SESSION")
+                ->with(['list' => Aluno::all()], 'POST')
+                ->redirect();
+        }
     }
 
     public static function destroy()
@@ -39,11 +52,9 @@ class AlunoController extends Controller
         if(isset($_POST['destroy']))
         {
             $aluno = new Aluno();
-            $aluno->read($_POST['id']);
-            var_dump($aluno->getId());
+            $aluno->read($_POST['destroy_id']);
             $aluno->delete();
         }
-        echo " saiu?";
         Router::route("alunos");
     }
 }

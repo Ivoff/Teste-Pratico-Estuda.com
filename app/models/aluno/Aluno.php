@@ -127,12 +127,12 @@ class Aluno implements IModel{
                 $statement = $con->prepare($sql);
 
                 $statement->execute([
-                    ':id' => $this->id,
                     ':nome' => $this->nome,
                     ':telefone' => $this->telefone,
                     ':email' => $this->email,
                     ':data_nascimento' => $this->datNasc,
-                    'genero' => $this->genero
+                    'genero' => $this->genero,
+                    'id' => $this->id,
                 ]);
 
                 return;

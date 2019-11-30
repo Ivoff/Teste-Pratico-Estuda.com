@@ -11,7 +11,4 @@ if(strpos($uri, "?") !== false)
     Router::doGet($uri);
 }
 else
-{
-    echo "chegou aqui";
     Router::route($uri);
-}

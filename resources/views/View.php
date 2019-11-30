@@ -2,6 +2,8 @@
 
 namespace Resources\Views;
 
+use Routes\Router;
+
 class View {
 
     private $filePath;
@@ -16,9 +18,25 @@ class View {
         require $this->filePath;
     }
 
-    public function with($key, $data)
+    public function with($data, $method)
     {
-        $_POST[$key] = $data;
+        if($method == "POST")
+        {
+            foreach ($data as $key => $value)
+            {
+                $_POST[$key] = $value;
+            }
+        }
+        elseif ($method == 'SESSION')
+        {
+            session_start();
+
+            foreach ($data as $key => $value)
+            {
+                $_SESSION[$key] = $value;
+            }
+        }
+
 
         return $this;
     }
