@@ -8,7 +8,7 @@
   */
     if(isset($_POST['aluno_create']))
     {
-        header("Location: /alunos");
+        header("Location: /aluno");
         return;
     }
 ?>
@@ -48,5 +48,18 @@
 
         <button type="submit">Enviar</button>
     </form>
+
+    <table>
+        <thead>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>DatNasc</th>
+            <th colspan="2"></th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 </body>
 </html>

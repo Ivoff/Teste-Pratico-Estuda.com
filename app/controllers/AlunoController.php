@@ -2,14 +2,16 @@
 
 namespace Controllers;
 
+use Resources\Views\View;
 use Routes\Router;
-use App\Models\Aluno;
+use App\Models\Aluno\Aluno;
 
 class AlunoController extends Controller
 {
     public static function index()
     {
-        require 'resources/views/alunos/index.php';
+        $alunoView = new View('resources/views/alunos/index.php');
+        $alunoView->with("lista", Aluno::all())->redirect();
     }
 
     public static function store()
@@ -24,7 +26,7 @@ class AlunoController extends Controller
             $aluno->setGenero($_POST['aluno_genero']);
             $aluno->save();
         }
-        Router::route("alunos");
+        Router::route("aluno");
     }
 
     public static function edit()
