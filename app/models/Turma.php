@@ -159,7 +159,7 @@ class Turma implements IModel {
     {
         if($this->getId() > 0)
         {
-            $sql = "UPDATE turmas SET escola_id=2, ano=:ano, 
+            $sql = "UPDATE turmas SET escola_id=:escola_id, ano=:ano, 
             nivel_ensino=:nivel_ensino, serie=:serie, turno=:turno  
             WHERE id=:id";
 
@@ -170,6 +170,7 @@ class Turma implements IModel {
                 $statement = $con->prepare($sql);
 
                 $statement->execute([
+                    ':escola_id' => $this->escola->getId(),
                     ':ano' => $this->ano,
                     ':nivel_ensino' => $this->nivelEnsino,
                     ':serie' => $this->serie,
@@ -186,7 +187,7 @@ class Turma implements IModel {
         else
         {
             $sql = "INSERT INTO turmas(escola_id, ano, nivel_ensino, serie, 
-            turno) VALUES(2, :ano, :nivel_ensino, :serie, :turno)";
+            turno) VALUES(:escola_id, :ano, :nivel_ensino, :serie, :turno)";
 
             $con = Connection::con();
 
@@ -195,6 +196,7 @@ class Turma implements IModel {
                 $statement = $con->prepare($sql);
 
                 $statement->execute([
+                    ':escola_id' => $this->escola->getId(),
                     ':ano' => $this->ano,
                     ':nivel_ensino' => $this->nivelEnsino,
                     ':serie' => $this->serie,
@@ -221,7 +223,16 @@ class Turma implements IModel {
             $statement = $con->prepare($sql);
             $statement->execute();
 
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            for($i = 0; $i < count($result); $i += 1)
+            {
+                $escola = new Escola();
+                $escola->read($result[$i]['escola_id']);
+                $result[$i]['escola'] = $escola;
+            }
+
+            return $result;
 
         }catch (Exception $e)
         {

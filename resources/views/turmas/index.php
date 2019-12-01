@@ -16,7 +16,7 @@
 
 <html>
 <head>
-    <script src="/resources/assets/js/jquery.js"></script>
+    <script src="/resources/js/jquery"></script>
     <title>Turmas</title>
 </head>
 <body>
@@ -38,7 +38,7 @@
     <?php
         if(isset($_SESSION['escola_list'])) {
             ?>
-            <table>
+            <table id="escolas">
                 <thead>
                     <th>Nome</th>
                     <th>Endereco</th>
@@ -58,7 +58,7 @@
                                 <td><?=$value['estado']?></td>
                                 <td><?=$value['situacao']?></td>
                                 <td>
-                                    <input type="radio"  name="turma_escola" id="selected">
+                                    <input type="radio"  name="selected" id="selected" value="<?=$value['id']?>">
                                 </td>
                             </tr>
                             <?php
@@ -73,7 +73,9 @@
     <form action="/turmas/create" METHOD="POST">
         <input type="hidden" name="turma_create" value="true">
 
-        <input type="hidden" name="turma_id"
+        <input type="hidden" name="turma_escola" id="turma_escola">
+
+        <input type="hidden" name="turma_id" id="turma_id"
                value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getId() : "" ?>">
 
         <div>
@@ -100,11 +102,12 @@
                    value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getTurno() : "" ?>">
         </div>
 
-        <button type="submit">enviar</button>
+        <button type="submit" id="create_button">enviar</button>
     </form>
 
     <table>
         <thead>
+            <th>Escola</th>
             <th>Ano</th>
             <th>Nivel de Ensino</th>
             <th>Serie</th>
@@ -116,6 +119,7 @@
                 foreach ($_POST['list'] as $value){
             ?>
                     <tr>
+                        <td><?=$value['escola']->getNome()?></td>
                         <td><?=$value['ano']?></td>
                         <td><?=$value['nivel_ensino']?></td>
                         <td><?=$value['serie']?></td>
@@ -140,6 +144,15 @@
             ?>
         </tbody>
     </table>
+
+    <script>
+        $(document).ready(() => {
+            $('#create_button').on('click', function(){
+                var selected = $('input[name=selected]:checked').val();
+                $('#turma_escola').val(selected);
+            });
+        })
+    </script>
 
 </body>
 </html>

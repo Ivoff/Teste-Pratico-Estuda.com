@@ -20,7 +20,11 @@ class TurmaController extends Controller
         if(isset($_POST['turma_create']))
         {
             $turma = new Turma();
+            $escola = new Escola();
 
+            $escola->read($_POST['turma_escola']);
+
+            $turma->setEscola($escola);
             $turma->setId((int) $_POST['turma_id']);
             $turma->setAno($_POST['turma_ano']);
             $turma->setNivelEnsino($_POST['turma_nivelEnsino']);

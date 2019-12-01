@@ -16,7 +16,5 @@
     "url": "https://github.com/Ivoff/Teste-Pratico-Estuda.com/issues"
   },
   "homepage": "https://github.com/Ivoff/Teste-Pratico-Estuda.com#readme",
-  "dependencies": {
-    "jquery": "^3.4.1"
-  }
+  "dependencies": {}
 }

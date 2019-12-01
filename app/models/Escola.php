@@ -236,7 +236,7 @@ class Escola implements IModel {
             $stamement = $con->prepare($sql);
             $stamement ->execute();
 
-            return $stamement->fetchAll(PDO::FETCH_ASSOC);
+            return $stamement->fetchAll(  PDO::FETCH_ASSOC);
 
         }catch (Exception $e)
         {
