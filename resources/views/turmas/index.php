@@ -28,10 +28,6 @@
 
     <br/>
 
-    <?php
-        $currentTurma = isset($_SESSION) ? $_SESSION['edit_data'] : null;
-    ?>
-
     <form action="/turmas/create" METHOD="POST">
         <input type="hidden" name="turma_create" value="true">
 

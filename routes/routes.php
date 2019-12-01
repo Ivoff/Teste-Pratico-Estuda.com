@@ -44,5 +44,8 @@ $routes = [
     },
     'escolas/destroy' => function(){
         EscolaController::destroy();
+    },
+    'escolas/edit' => function(){
+        EscolaController::edit();
     }
 ];

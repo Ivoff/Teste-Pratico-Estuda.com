@@ -6,6 +6,10 @@
         header("Location: /escolas");
         return;
     }
+    elseif (isset($_SESSION['edit_data']))
+    {
+        session_destroy();
+    }
 ?>
 
 <html>
@@ -24,31 +28,37 @@
     <form action="/escolas/create" method="POST">
         <input type="hidden" name="escola_create" value="true">
 
-        <input type="hidden" name="escola_id" value="">
+        <input type="hidden" name="escola_id"
+               value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getId() : "" ?>">
 
         <div>
             <label for="escola_nome">Nome</label>
-            <input type="text" name="escola_nome" id="escola_nome" required>
+            <input type="text" name="escola_nome" id="escola_nome" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getNome() : "" ?>">
         </div>
 
         <div>
             <label for="escola_endereco">Endereco</label>
-            <input type="text" name="escola_endereco" id="escola_endereco" required>
+            <input type="text" name="escola_endereco" id="escola_endereco" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getEndereco() : "" ?>">
         </div>
 
         <div>
             <label for="escola_cidade">Cidade</label>
-            <input type="text" name="escola_cidade" id="escola_cidade" required>
+            <input type="text" name="escola_cidade" id="escola_cidade" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getCidade() : "" ?>">
         </div>
 
         <div>
             <label for="escola_estado">Estado</label>
-            <input type="text" name="escola_estado" id="escola_estado" required>
+            <input type="text" name="escola_estado" id="escola_estado" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getEstado() : "" ?>">
         </div>
 
         <div>
             <label for="escola_situcacao">Situacao</label>
-            <input type="text" name="escola_situacao" id="escola_situcacao" required>
+            <input type="text" name="escola_situacao" id="escola_situcacao" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getSituacao() : "" ?>">
         </div>
 
         <button type="submit">enviar</button>
@@ -81,7 +91,11 @@
                             </form>
                         </td>
                         <td>
-                            <button>editar</button>
+                            <form action="/escolas/edit" method="GET">
+                                <input type="hidden" name="edit" value="true">
+                                <input type="hidden" name="edit_id" value="<?=$value['id']?>">
+                                <button type="submit">editar</button>
+                            </form>
                         </td>
                     </tr>
             <?php

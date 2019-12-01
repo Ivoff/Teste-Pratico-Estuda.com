@@ -34,7 +34,16 @@ class EscolaController extends Controller
 
     public static function edit()
     {
+        if(isset($_GET['edit']))
+        {
+            $escola = new Escola();
+            $escola->read($_GET['edit_id']);
 
+            $escolaView = new View('resources/views/escolas/index.php');
+            $escolaView->with(['list' => Escola::all()], "POST")
+                ->with(['edit_data' => $escola], "SESSION")
+                ->redirect();
+        }
     }
 
     public static function destroy()
