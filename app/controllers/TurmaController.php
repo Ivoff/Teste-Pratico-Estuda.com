@@ -20,6 +20,7 @@ class TurmaController extends Controller
         {
             $turma = new Turma();
 
+            $turma->setId((int) $_POST['turma_id']);
             $turma->setAno($_POST['turma_ano']);
             $turma->setNivelEnsino($_POST['turma_nivelEnsino']);
             $turma->setSerie($_POST['turma_serie']);
@@ -32,7 +33,16 @@ class TurmaController extends Controller
 
     public static function edit()
     {
-        //TODO: implement this controller
+        if(isset($_GET['edit']))
+        {
+            $turma = new Turma();
+            $turma->read($_GET['edit_id']);
+
+            $turmaView = new View('resources/views/turmas/index.php');
+            $turmaView->with(['list' => Turma::all()], 'POST')
+                ->with(['edit_data' => $turma], 'SESSION')
+                ->redirect();
+        }
     }
 
     public static function destroy()

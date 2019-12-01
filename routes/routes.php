@@ -31,5 +31,8 @@ $routes = [
     },
     'turmas/destroy' => function(){
         TurmaController::destroy();
+    },
+    'turmas/edit' => function(){
+        TurmaController::edit();
     }
 ];

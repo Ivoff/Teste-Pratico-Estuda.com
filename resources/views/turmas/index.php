@@ -7,6 +7,10 @@
         header("Location: /turmas");
         return;
     }
+    elseif (isset($_SESSION['edit_data']))
+    {
+        session_destroy();
+    }
 
 ?>
 
@@ -24,27 +28,38 @@
 
     <br/>
 
+    <?php
+        $currentTurma = isset($_SESSION) ? $_SESSION['edit_data'] : null;
+    ?>
+
     <form action="/turmas/create" METHOD="POST">
         <input type="hidden" name="turma_create" value="true">
 
+        <input type="hidden" name="turma_id"
+               value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getId() : "" ?>">
+
         <div>
             <label for="turma_ano">Ano</label>
-            <input type="text" name="turma_ano" id="turma_ano">
+            <input type="text" name="turma_ano" id="turma_ano" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getAno() : "" ?>">
         </div>
 
         <div>
             <label for="turma_nivelEnsino">Nivel de Ensino</label>
-            <input type="text" name="turma_nivelEnsino" id="turma_nivelEnsino">
+            <input type="text" name="turma_nivelEnsino" id="turma_nivelEnsino" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getNivelEnsino() : "" ?>">
         </div>
 
         <div>
             <label for="turma_serie">Serie</label>
-            <input type="text" name="turma_serie" id="turma_serie">
+            <input type="text" name="turma_serie" id="turma_serie" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getSerie() : "" ?>">
         </div>
 
         <div>
             <label for="turma_turno">Turno</label>
-            <input type="text" name="turma_turno" id="turma_turno">
+            <input type="text" name="turma_turno" id="turma_turno" required
+                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getTurno() : "" ?>">
         </div>
 
         <button type="submit">enviar</button>
@@ -75,8 +90,10 @@
                             </form>
                         </td>
                         <td>
-                            <form>
-                                <input type="hidden" name="edit" value="">
+                            <form action="/turmas/edit" method="GET">
+                                <input type="hidden" name="edit" value="true">
+                                <input type="hidden" name="edit_id" value="<?=$value['id']?>">
+                                <button type="submit">editar</button>
                             </form>
                         </td>
                     </tr>
