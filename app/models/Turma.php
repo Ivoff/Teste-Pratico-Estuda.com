@@ -113,55 +113,27 @@ class Turma implements IModel {
 
     public function read($id)
     {
-        if($this->getId() > 0)
+        $sql = "SELECT * FROM turmas WHERE id = $id LIMIT 1";
+
+        $con = Connection::con();
+
+        try{
+
+            $statement = $con->prepare($sql);
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $statement->closeCursor();
+
+            $this->setAno($result['ano']);
+            $this->setNivelEnsino($result['nivel_ensino']);
+            $this->setSerie($result['serie']);
+            $this->setTurno($result['turno']);
+            $this->setId($result['id']);
+
+            return;
+        }catch (Exception $e)
         {
-            $sql = "UPDATE turmas SET escola_id=2, ano=:ano, 
-            nivel_ensino=:nivel_ensino, serie=:serie, turno=:turno  
-            WHERE id=:id";
-
-            $con = Connection::con();
-
-            try
-            {
-                $statement = $con->prepare($sql);
-
-                $statement->execute([
-                    'ano' => $this->ano,
-                    'nivel_ensino' => $this->nivelEnsino,
-                    'serie' => $this->serie,
-                    'turno' => $this->turno,
-                    'id' => $this->id
-                ]);
-
-                return;
-            }catch (Exception $e)
-            {
-                die($e->getMessage());
-            }
-        }
-        else
-        {
-            $sql = "INSERT INTO turmas(escola, ano, nivel_ensino, serie, 
-            turno) VALUES(2, :ano, :nivel, :serie, :turno)";
-
-            $con = Connection::con();
-
-            try
-            {
-                $statement = $con->prepare($sql);
-
-                $statement->execute([
-                    'ano' => $this->ano,
-                    'nivel_ensino' => $this->nivelEnsino,
-                    'serie' => $this->serie,
-                    'turno' => $this->turno
-                ]);
-
-                return;
-            }catch (Exception $e)
-            {
-                die($e->getMessage());
-            }
+            die($e->getMessage());
         }
     }
 
@@ -185,7 +157,56 @@ class Turma implements IModel {
 
     public function save()
     {
-        // TODO: Implement save() method.
+        if($this->getId() > 0)
+        {
+            $sql = "UPDATE turmas SET escola_id=2, ano=:ano, 
+            nivel_ensino=:nivel_ensino, serie=:serie, turno=:turno  
+            WHERE id=:id";
+
+            $con = Connection::con();
+
+            try
+            {
+                $statement = $con->prepare($sql);
+
+                $statement->execute([
+                    ':ano' => $this->ano,
+                    ':nivel_ensino' => $this->nivelEnsino,
+                    ':serie' => $this->serie,
+                    ':turno' => $this->turno,
+                    ':id' => $this->id
+                ]);
+
+                return;
+            }catch (Exception $e)
+            {
+                die($e->getMessage());
+            }
+        }
+        else
+        {
+            $sql = "INSERT INTO turmas(escola_id, ano, nivel_ensino, serie, 
+            turno) VALUES(2, :ano, :nivel_ensino, :serie, :turno)";
+
+            $con = Connection::con();
+
+            try
+            {
+                $statement = $con->prepare($sql);
+
+                $statement->execute([
+                    ':ano' => $this->ano,
+                    ':nivel_ensino' => $this->nivelEnsino,
+                    ':serie' => $this->serie,
+                    ':turno' => $this->turno
+                ]);
+
+                return;
+            }catch (Exception $e)
+            {
+                die($e->getMessage());
+            }
+        }
     }
 
     public static function all()

@@ -2,6 +2,7 @@
 
 use Controllers\AlunoController;
 use Controllers\HomeController;
+use Controllers\TurmaController;
 
 $routes = [
     '/' => function(){
@@ -24,5 +25,11 @@ $routes = [
     },
     'turmas' => function(){
         TurmaController::index();
+    },
+    'turmas/create' => function(){
+        TurmaController::store();
+    },
+    'turmas/destroy' => function(){
+        TurmaController::destroy();
     }
 ];

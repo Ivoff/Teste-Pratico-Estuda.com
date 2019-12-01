@@ -23,7 +23,7 @@ class TurmaController extends Controller
             $turma->setAno($_POST['turma_ano']);
             $turma->setNivelEnsino($_POST['turma_nivelEnsino']);
             $turma->setSerie($_POST['turma_serie']);
-            $turma->setEscola($_POST['turma_turno']);
+            $turma->setTurno($_POST['turma_turno']);
 
             $turma->save();
         }
@@ -37,6 +37,13 @@ class TurmaController extends Controller
 
     public static function destroy()
     {
-        //TODO: implement this controller
+        if(isset($_POST['destroy']))
+        {
+            $turma = new Turma();
+            $turma->read($_POST['destroy_id']);
+            $turma->delete();
+        }
+
+        Router::route('turmas');
     }
 }
