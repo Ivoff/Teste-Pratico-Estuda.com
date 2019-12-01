@@ -35,7 +35,44 @@
             <input type="text" name="escola_estado" id="escola_estado" required>
         </div>
 
-        <button type="submit"></button>
+        <div>
+            <label for="escola_situcacao">Situacao</label>
+            <input type="text" name="escola_situacao" id="escola_situcacao" required>
+        </div>
+
+        <button type="submit">enviar</button>
     </form>
+
+    <table>
+        <thead>
+            <th>Nome</th>
+            <th>Endereco</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Situacao</th>
+            <th colspan="2"></th>
+        </thead>
+        <tbody>
+            <?php
+                foreach ($_POST['list'] as $value){
+            ?>
+                    <tr>
+                        <td><?=$value['nome']?></td>
+                        <td><?=$value['endereco']?></td>
+                        <td><?=$value['cidade']?></td>
+                        <td><?=$value['estado']?></td>
+                        <td><?=$value['situacao']?></td>
+                        <td>
+                            <button>excluir</button>
+                        </td>
+                        <td>
+                            <button>editar</button>
+                        </td>
+                    </tr>
+            <?php
+                }
+            ?>
+        </tbody>
+    </table>
 </body>
 </html>
