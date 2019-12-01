@@ -130,8 +130,8 @@ class Aluno implements IModel{
                     ':telefone' => $this->telefone,
                     ':email' => $this->email,
                     ':data_nascimento' => $this->datNasc,
-                    'genero' => $this->genero,
-                    'id' => $this->id,
+                    ':genero' => $this->genero,
+                    ':id' => $this->id
                 ]);
 
                 return;
@@ -156,7 +156,7 @@ class Aluno implements IModel{
                     ':telefone' => $this->telefone,
                     ':email' => $this->email,
                     ':data_nascimento' => $this->datNasc,
-                    'genero' => $this->genero
+                    ':genero' => $this->genero
                 ]);
 
                 return;
@@ -165,8 +165,6 @@ class Aluno implements IModel{
                 die($e->getMessage());
             }
         }
-
-
     }
 
     public function read($id)
@@ -231,7 +229,6 @@ class Aluno implements IModel{
         {
             die($e->getMessage());
         }
-
     }
 
     public static function search($query)

@@ -231,6 +231,6 @@ class Turma implements IModel {
 
     public static function search($query)
     {
-        // TODO: Implement search() method.
+
     }
 }
