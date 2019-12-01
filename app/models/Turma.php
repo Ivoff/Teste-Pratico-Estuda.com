@@ -124,11 +124,16 @@ class Turma implements IModel {
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $statement->closeCursor();
 
+            $escola = new Escola();
+            $escola->read($result['escola_id']);
+
+            $this->setEscola($escola);
             $this->setAno($result['ano']);
             $this->setNivelEnsino($result['nivel_ensino']);
             $this->setSerie($result['serie']);
             $this->setTurno($result['turno']);
             $this->setId($result['id']);
+
 
             return;
         }catch (Exception $e)

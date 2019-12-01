@@ -129,6 +129,35 @@ class AlunoTurma implements IModel
         }
     }
 
+    public static function turmasFromAluno($id)
+    {
+        $sql = "SELECT * FROM aluno_turma WHERE aluno_id = $id";
+
+        $con = Connection::con();
+
+        try
+        {
+            $statement = $con->prepare($sql);
+            $statement->execute();
+
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            $turmas = [];
+
+            for($i = 0; $i < count($result); $i += 1)
+            {
+                $turma = new Turma();
+                $turma->read($result[$i]['turma_id']);
+                $turmas[$i] = $turma;
+            }
+
+            return $turma;
+        }catch (Exception $e)
+        {
+            die($e->getMessage());
+        }
+    }
+
     public static function search($query)
     {
         // TODO: Implement search() method.
