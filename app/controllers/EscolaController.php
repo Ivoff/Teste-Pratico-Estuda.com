@@ -56,4 +56,35 @@ class EscolaController extends Controller
         }
         Router::route('escolas');
     }
+
+    public static function search()
+    {
+        if(isset($_GET['search']))
+        {
+            $nome = $_GET['query'];
+
+            $query = null;
+
+            $pieces = explode(' ', $nome);
+
+            if(count($pieces) == 1)
+            {
+                $query = $pieces[0];
+                $query = '+'.$query.'*';
+            }
+            else
+            {
+                for($i = 0; $i < count($pieces); $i += 1)
+                {
+                    if($i == count($pieces)-1)
+                        $query = $query . '+' . $pieces[$i];
+                    else
+                        $query = $query . '+' . $pieces[$i] . ' ';
+                }
+            }
+
+            $escolaView = new View('resources/views/escolas/index.php');
+            $escolaView->with(["list" => Escola::search($query)], "POST")->redirect();
+        }
+    }
 }

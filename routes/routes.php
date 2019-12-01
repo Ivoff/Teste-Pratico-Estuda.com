@@ -47,5 +47,8 @@ $routes = [
     },
     'escolas/edit' => function(){
         EscolaController::edit();
+    },
+    'escolas/search' => function(){
+        EscolaController::search();
     }
 ];

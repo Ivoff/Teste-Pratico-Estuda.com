@@ -17,7 +17,7 @@
     <title>Escolas</title>
 </head>
 <body>
-    <form>
+    <form action="/escolas/search" method="GET">
         <input type="hidden" name="search" value="true">
         Busca<input type="text" name="query" autocomplete="false">
         <button type="submit">buscar</button>
