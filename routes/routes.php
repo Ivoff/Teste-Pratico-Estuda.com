@@ -38,5 +38,8 @@ $routes = [
     },
     'escolas' => function(){
         EscolaController::index();
+    },
+    'escolas/create' => function(){
+        EscolaController::store();
     }
 ];

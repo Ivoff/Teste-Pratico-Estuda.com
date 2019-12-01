@@ -12,8 +12,10 @@
 
     <br/>
 
-    <form>
+    <form action="/escolas/create" method="POST">
         <input type="hidden" name="escola_create" value="true">
+
+        <input type="hidden" name="escola_id" value="">
 
         <div>
             <label for="escola_nome">Nome</label>
