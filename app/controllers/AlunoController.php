@@ -40,10 +40,8 @@ class AlunoController extends Controller
             $aluno = new Aluno();
             $aluno->read($_GET['edit_id']);
 
-            $alunoView = new View('resources/views/alunos/index.php');
-            $alunoView->with(['edit_data' => $aluno], "SESSION")
-                ->with(['list' => Aluno::all()], 'POST')
-                ->redirect();
+            $alunoView = new View('resources/views/alunos/register.php');
+            $alunoView->with(['edit_data' => $aluno], "SESSION")->redirect();
         }
     }
 

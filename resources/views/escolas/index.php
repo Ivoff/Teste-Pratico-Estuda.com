@@ -84,17 +84,20 @@
                         <td><?=$value['estado']?></td>
                         <td><?=$value['situacao']?></td>
                         <td>
-                            <form action="/escolas/destroy" method="POST">
-                                <input type="hidden" name="destroy" value="true">
-                                <input type="hidden" name="destroy_id" value="<?=$value['id']?>">
-                                <button type="submit">excluir</button>
-                            </form>
+
                         </td>
                         <td>
                             <form action="/escolas/edit" method="GET">
                                 <input type="hidden" name="edit" value="true">
                                 <input type="hidden" name="edit_id" value="<?=$value['id']?>">
                                 <button type="submit">editar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/escolas/destroy" method="POST">
+                                <input type="hidden" name="destroy" value="true">
+                                <input type="hidden" name="destroy_id" value="<?=$value['id']?>">
+                                <button type="submit">excluir</button>
                             </form>
                         </td>
                     </tr>

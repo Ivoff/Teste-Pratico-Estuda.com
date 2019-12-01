@@ -12,6 +12,9 @@ $routes = [
     'alunos' => function(){
         AlunoController::index();
     },
+    'alunos/view/create' => function(){
+        require 'resources/views/alunos/register.php';
+    },
     'alunos/create' => function(){
         AlunoController::store();
     },
