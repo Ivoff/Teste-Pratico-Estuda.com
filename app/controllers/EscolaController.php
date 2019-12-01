@@ -60,7 +60,7 @@ class EscolaController extends Controller
 
     public static function search()
     {
-        if(isset($_GET['query']))
+        if(isset($_GET['search']))
         {
             $nome = $_GET['query'];
 
@@ -84,19 +84,9 @@ class EscolaController extends Controller
                 }
             }
 
-            if(isset($_GET['search']))
-            {
-                $escolaView = new View('resources/views/escolas/index.php');
-                $escolaView->with(["list" => Escola::search($query)], "POST")
-                    ->redirect();
-            }
-            elseif(isset($_GET['turma_search']))
-            {
-                $turmaView = new View('resources/views/turmas/index.php');
-                $turmaView->with(["escola_list" => Escola::search($query)], "SESSION")
-                    ->with(['list' => Turma::all()], "POST")
-                    ->redirect();
-            }
+            $escolaView = new View('resources/views/escolas/index.php');
+            $escolaView->with(["list" => Escola::search($query)], "POST")
+                ->redirect();
         }
     }
 }

@@ -36,6 +36,9 @@ $routes = [
     'turmas/edit' => function(){
         TurmaController::edit();
     },
+    'turmas/escolas/search' => function(){
+        TurmaController::escolaSearch();
+    },
     'escolas' => function(){
         EscolaController::index();
     },

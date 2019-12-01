@@ -17,7 +17,6 @@
 //    }
     elseif (isset($_SESSION['edit_data']) or isset($_SESSION['escola_list']))
     {
-        echo  "destruiu";
         session_destroy();
     }
 
@@ -37,8 +36,8 @@
 
     <br/>
 
-    <form action="/escolas/search" method="GET">
-        <input type="hidden" name="turma_search" value="true">
+    <form action="/turmas/escolas/search" method="GET">
+        <input type="hidden" name="search" value="true">
         Busca Escola<input type="text" name="query" placeholder="search">
         <button type="submit">buscar</button>
     </form>
@@ -66,7 +65,7 @@
                                 <td><?=$value['estado']?></td>
                                 <td><?=$value['situacao']?></td>
                                 <td>
-                                    <input type="radio" id="selected">
+                                    <input type="radio"  name="turma_escola" id="selected">
                                 </td>
                             </tr>
                             <?php
