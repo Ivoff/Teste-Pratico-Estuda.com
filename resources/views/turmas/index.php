@@ -7,8 +7,17 @@
         header("Location: /turmas");
         return;
     }
-    elseif (isset($_SESSION['edit_data']))
+//    elseif (isset($_POST['escola_list']))
+//    {
+//        session_start();
+//        echo "chegou aqui";
+//        $_SESSION['escola_list'] = $_POST['escola_list'];
+//        header("Location: /turmas");
+//        return;
+//    }
+    elseif (isset($_SESSION['edit_data']) or isset($_SESSION['escola_list']))
     {
+        echo  "destruiu";
         session_destroy();
     }
 
@@ -27,6 +36,47 @@
     </form>
 
     <br/>
+
+    <form action="/escolas/search" method="GET">
+        <input type="hidden" name="turma_search" value="true">
+        Busca Escola<input type="text" name="query" placeholder="search">
+        <button type="submit">buscar</button>
+    </form>
+
+    <?php
+        if(isset($_SESSION['escola_list'])) {
+            ?>
+            <table>
+                <thead>
+                    <th>Nome</th>
+                    <th>Endereco</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Situacao</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <?php
+                        foreach ($_SESSION['escola_list'] as $value) {
+                            ?>
+                            <tr>
+                                <td><?=$value['nome']?></td>
+                                <td><?=$value['endereco']?></td>
+                                <td><?=$value['cidade']?></td>
+                                <td><?=$value['estado']?></td>
+                                <td><?=$value['situacao']?></td>
+                                <td>
+                                    <input type="radio" id="selected">
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    ?>
+                </tbody>
+            </table>
+            <?php
+        }
+    ?>
 
     <form action="/turmas/create" METHOD="POST">
         <input type="hidden" name="turma_create" value="true">
