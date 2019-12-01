@@ -7,14 +7,6 @@
         header("Location: /turmas");
         return;
     }
-//    elseif (isset($_POST['escola_list']))
-//    {
-//        session_start();
-//        echo "chegou aqui";
-//        $_SESSION['escola_list'] = $_POST['escola_list'];
-//        header("Location: /turmas");
-//        return;
-//    }
     elseif (isset($_SESSION['edit_data']) or isset($_SESSION['escola_list']))
     {
         session_destroy();
@@ -24,6 +16,7 @@
 
 <html>
 <head>
+    <script src="/resources/assets/js/jquery.js"></script>
     <title>Turmas</title>
 </head>
 <body>
