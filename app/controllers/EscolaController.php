@@ -39,6 +39,12 @@ class EscolaController extends Controller
 
     public static function destroy()
     {
-
+        if(isset($_POST['destroy']))
+        {
+            $escola = new Escola();
+            $escola->read($_POST['destroy_id']);
+            $escola->delete();
+        }
+        Router::route('escolas');
     }
 }

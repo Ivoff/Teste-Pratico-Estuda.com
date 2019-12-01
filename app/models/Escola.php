@@ -133,7 +133,7 @@ class Escola implements IModel {
 
     public function delete()
     {
-        $sql = "DELETE FROM escolas WHERE alunos.id = $this->id";
+        $sql = "DELETE FROM escolas WHERE id = $this->id";
 
         $con = Connection::con();
 
