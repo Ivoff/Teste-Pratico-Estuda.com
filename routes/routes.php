@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\AlunoController;
+use App\Controllers\EscolaController;
 use App\Controllers\HomeController;
 use App\Controllers\TurmaController;
 
@@ -34,5 +35,8 @@ $routes = [
     },
     'turmas/edit' => function(){
         TurmaController::edit();
+    },
+    'escolas' => function(){
+        EscolaController::index();
     }
 ];

@@ -6,5 +6,6 @@
 <body>
     <a href="alunos">Alunos</a>
     <a href="turmas">Turmas</a>
+    <a href="escolas">Escolas</a>
 </body>
 </html>
