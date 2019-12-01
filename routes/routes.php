@@ -1,8 +1,8 @@
 <?php
 
-use Controllers\AlunoController;
-use Controllers\HomeController;
-use Controllers\TurmaController;
+use App\Controllers\AlunoController;
+use App\Controllers\HomeController;
+use App\Controllers\TurmaController;
 
 $routes = [
     '/' => function(){

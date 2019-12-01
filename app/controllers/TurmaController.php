@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
 use App\Models\Turma;
 use Resources\Views\View;
