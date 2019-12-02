@@ -52,8 +52,21 @@ class AlunoTurmaController extends Controller
             }
 
             $turmaView = new View('resources/views/alunos/aluno_turmas.php');
-            $turmaView->with(["escola_list" => Escola::search($query)], "SESSION")
+            $turmaView->with(["escola_list" => Escola::search($query)], "POST")
                 ->redirect();
+        }
+    }
+
+    public static function getTurmas()
+    {
+        if(isset($_GET['escola_id']))
+        {
+            session_start();
+            $view = new View('resources/views/alunos/aluno_turmas.php');
+            $view->with(['turmas_list' => Escola::fetchTurmas($_GET['escola_id'])], "SESSION")
+                ->with(['turmas' => AlunoTurma::turmasFromAluno($_SESSION['aluno']->getId())], 'SESSION')
+                ->redirect();
+
         }
     }
 }

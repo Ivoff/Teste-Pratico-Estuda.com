@@ -243,4 +243,23 @@ class Escola implements IModel {
             die($e->getMessage());
         }
     }
+
+    public static function fetchTurmas($escola_id)
+    {
+        $sql = "SELECT * FROM turmas WHERE escola_id = $escola_id";
+
+        $con = Connection::con();
+
+        try
+        {
+            $stamement = $con->prepare($sql);
+            $stamement ->execute();
+
+            return $stamement->fetchAll(  PDO::FETCH_ASSOC);
+
+        }catch (Exception $e)
+        {
+            die($e->getMessage());
+        }
+    }
 }

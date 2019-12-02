@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Escola;
 use App\Models\Turma;
+use mysql_xdevapi\Session;
 use Resources\Views\View;
 use Routes\Router;
 
@@ -89,4 +90,5 @@ class EscolaController extends Controller
                 ->redirect();
         }
     }
+
 }

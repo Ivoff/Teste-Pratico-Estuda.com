@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+
 <html>
     <head>
         <title>Turmas Cadastradas</title>
@@ -10,7 +11,6 @@
     ?>
         <table>
             <thead>
-                <th>Escola</th>
                 <th>Ano</th>
                 <th>Nivel de Ensino</th>
                 <th>Serie</th>
@@ -22,11 +22,10 @@
             foreach ($_SESSION['turmas'] as $values) {
                 ?>
                 <tr>
-                    <td><?=$values->getEscola()->getNome()?></td>
-                    <td><?=$values->getAno()?></td>
-                    <td><?=$values->getNivelEnsino()?></td>
-                    <td><?=$values->getSerie()?></td>
-                    <td><?=$values->getTurno();?></td>
+                    <td><?=$values['ano']?></td>
+                    <td><?=$values['nivel_ensino']?></td>
+                    <td><?=$values['serie']?></td>
+                    <td><?=$values['turno'];?></td>
                     <td>
                         <button>desvincular</button>
                     </td>
@@ -49,34 +48,78 @@
         Busca escola <input type="text" name="query" placeholder="search">
         <button type="submit">buscar</button>
     </form>
-
-    <table>
-        <thead>
+    <?php
+        if(isset($_POST['escola_list'])){
+    ?>
+        <table>
+            <thead>
             <th>Nome</th>
             <th>Endereco</th>
             <th>Cidade</th>
             <th>Estado</th>
             <th>Situacao</th>
             <th></th>
-        </thead>
-        <tbody>
-        <?php
-            foreach ($_SESSION['escola_list'] as $value) {
+            </thead>
+            <tbody>
+            <?php
+            foreach ($_POST['escola_list'] as $value) {
                 ?>
                 <tr>
-                    <td><?=$value['nome']?></td>
-                    <td><?=$value['endereco']?></td>
-                    <td><?=$value['cidade']?></td>
-                    <td><?=$value['estado']?></td>
-                    <td><?=$value['situacao']?></td>
+                    <td><?= $value['nome'] ?></td>
+                    <td><?= $value['endereco'] ?></td>
+                    <td><?= $value['cidade'] ?></td>
+                    <td><?= $value['estado'] ?></td>
+                    <td><?= $value['situacao'] ?></td>
                     <td>
-                        <button>selecionar</button>
+                        <form action="/alunos/get/turmas" method="GET">
+                            <input type="hidden" name="escola_id" value="<?= $value['id'] ?>">
+                            <button type="submit">selecionar</button>
+                        </form>
                     </td>
                 </tr>
                 <?php
             }
         ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+            <?php
+        }
+    ?>
+
+    <?php
+        if(!empty($_SESSION['turmas_list'])){
+    ?>
+        <table>
+            <thead>
+                <th>Ano</th>
+                <th>Nivel de Ensino</th>
+                <th>Serie</th>
+                <th>Turno</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <?php
+                    foreach ($_SESSION['turmas_list'] as $value) {
+                ?>
+                        <tr>
+                            <td><?=$value['ano']?></td>
+                            <td><?=$value['nivel_ensino']?></td>
+                            <td><?=$value['serie']?></td>
+                            <td><?=$value['turno']?></td>
+                            <td><input type="checkbox" value="<?=$value['id']?>"></td>
+                        </tr>
+                <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+            <?php
+        }
+        elseif ((empty($_SESSION['turmas_list']) or !isset($_SESSION['turmas_list'])) and isset($_GET['escola_id']) ){
+            ?>
+            <h3>Nao existem turmas cadastradas nessa escola</h3>
+        <?php
+        }
+        ?>
 </body>
 </html>

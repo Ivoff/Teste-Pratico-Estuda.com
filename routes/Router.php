@@ -19,7 +19,6 @@ class Router
     }
 
     public static function doGet($path){
-
         $uri = explode('?', $path)[0];
 
         $paramsRaw = explode('?', $path)[1];
