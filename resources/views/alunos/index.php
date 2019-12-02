@@ -41,7 +41,7 @@
             <th>Telefone</th>
             <th>DatNasc</th>
             <th>Genero</th>
-            <th colspan="2"></th>
+            <th colspan="3"></th>
         </thead>
         <tbody>
             <?php
@@ -65,6 +65,12 @@
                                 <input type="hidden" name="edit" value="true">
                                 <input type="hidden" name="edit_id" value="<?=$value['id']?>">
                                 <button type="submit">editar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/alunos/turmas" method="GET">
+                                <input type="hidden" name="aluno_id" value="<?=$value['id']?>">
+                                <button type="submit">turmas</button>
                             </form>
                         </td>
                     </tr>

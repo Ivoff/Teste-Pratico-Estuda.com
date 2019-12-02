@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\AlunoController;
+use App\Controllers\AlunoTurmaController;
 use App\Controllers\EscolaController;
 use App\Controllers\HomeController;
 use App\Controllers\TurmaController;
@@ -26,6 +27,15 @@ $routes = [
     },
     'alunos/search' => function(){
         AlunoController::search();
+    },
+    'alunos/turmas' => function(){
+        AlunoTurmaController::index();
+    },
+    'alunos/turmas/create' => function(){
+        AlunoTurmaController::store();
+    },
+    'alunos/turmas/search' => function(){
+        AlunoTurmaController::escolaSearch();
     },
     'turmas' => function(){
         TurmaController::index();

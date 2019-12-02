@@ -150,8 +150,8 @@ class AlunoTurma implements IModel
                 $turma->read($result[$i]['turma_id']);
                 $turmas[$i] = $turma;
             }
+            return $turmas;
 
-            return $turma;
         }catch (Exception $e)
         {
             die($e->getMessage());
