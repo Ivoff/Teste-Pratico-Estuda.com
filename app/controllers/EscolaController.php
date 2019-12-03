@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\Escola;
 use App\Models\Turma;
-use mysql_xdevapi\Session;
 use Resources\Views\View;
 use Routes\Router;
 
@@ -32,7 +31,7 @@ class EscolaController extends Controller
             $escola->save();
         }
 
-        Router::route('escolas');
+        Router::route('/escolas');
     }
 
     public static function edit()
@@ -55,7 +54,8 @@ class EscolaController extends Controller
             $escola->read($_POST['destroy_id']);
             $escola->delete();
         }
-        Router::route('escolas');
+
+        Router::route('/escolas');
     }
 
     public static function search()
@@ -86,6 +86,20 @@ class EscolaController extends Controller
 
             $escolaView = new View('resources/views/escolas/index.php');
             $escolaView->with(["list" => Escola::search($query)])
+                ->redirect();
+        }
+    }
+
+    public static function more()
+    {
+        if(isset($_GET['escola_id']))
+        {
+            $escola = new Escola();
+            $escola->read($_GET['escola_id']);
+
+            $view = new View('resources/views/escolas/more.php');
+            $view->with(['escola' => $escola])
+                ->with(['turmas' => Escola::fetchTurmas($_GET['escola_id'])])
                 ->redirect();
         }
     }

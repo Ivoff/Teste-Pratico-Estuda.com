@@ -1,4 +1,13 @@
 <!DOCTYPE HTML>
+
+<?php
+    if(isset($_POST['destroy']) or isset($_POST['escola_create']))
+    {
+        header("Location: /escolas");
+        return;
+    }
+?>
+
 <html>
 <head>
     <title>Escolas</title>
@@ -21,7 +30,7 @@
             <th>Cidade</th>
             <th>Estado</th>
             <th>Situacao</th>
-            <th colspan="2"></th>
+            <th colspan="3"></th>
         </thead>
         <tbody>
             <?php
@@ -48,6 +57,12 @@
                                 <input type="hidden" name="destroy" value="true">
                                 <input type="hidden" name="destroy_id" value="<?=$value['id']?>">
                                 <button type="submit">excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/escolas/more" method="GET">
+                                <input type="hidden" name="escola_id" value="<?=$value['id']?>">
+                                <button type="submit">mais</button>
                             </form>
                         </td>
                     </tr>

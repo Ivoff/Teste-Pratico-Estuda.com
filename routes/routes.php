@@ -64,6 +64,9 @@ $routes = [
     'escolas/view/create' => function(){
         require 'resources/views/escolas/register.php';
     },
+    'escolas/more' => function(){
+        EscolaController::more();
+    },
     'escolas/create' => function(){
         EscolaController::store();
     },

@@ -1,13 +1,4 @@
 <!DOCTYPE HTML>
-
-<?php
-    if(isset($_POST['escola_create']) or isset($_POST['destroy']))
-    {
-        header("Location: /escolas");
-        return;
-    }
-?>
-
 <html>
 <head>
     <title>Escolas - Registro</title>
