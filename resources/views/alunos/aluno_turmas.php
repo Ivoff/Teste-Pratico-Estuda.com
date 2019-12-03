@@ -1,11 +1,4 @@
 <!DOCTYPE HTML>
-<?php
-    if(isset($_POST['turmas_list']))
-    {
-        $params = $_SESSION['aluno']->getId();
-        header("Location: /alunos/turmas?aluno_id=$params");
-    }
-?>
 <html>
     <head>
         <script src="/resources/js/jquery"></script>
@@ -13,10 +6,9 @@
     </head>
 <body>
 
-    <input type="hidden" id="aluno_id" name="aluno_id" value="<?=$_SESSION['aluno']->getId()?>">
 
     <?php
-        if(!empty($_GET['turmas'])){
+        if(!empty($turmas)){
     ?>
         <table>
             <thead>
@@ -28,7 +20,7 @@
             </thead>
             <tbody>
             <?php
-            foreach ($_GET['turmas'] as $values) {
+            foreach ($turmas as $values) {
                 ?>
                 <tr>
                     <td><?=$values['ano']?></td>
@@ -57,8 +49,9 @@
         Busca escola <input type="text" name="query" placeholder="search">
         <button type="submit">buscar</button>
     </form>
+
     <?php
-        if(isset($_POST['escola_list'])){
+        if(isset($escola_list)){
     ?>
         <table>
             <thead>
@@ -71,7 +64,7 @@
             </thead>
             <tbody>
             <?php
-            foreach ($_POST['escola_list'] as $value) {
+            foreach ($escola_list as $value) {
                 ?>
                 <tr>
                     <td><?= $value['nome'] ?></td>
@@ -80,7 +73,7 @@
                     <td><?= $value['estado'] ?></td>
                     <td><?= $value['situacao'] ?></td>
                     <td>
-                        <form action="/alunos/get/turmas" method="GET">
+                        <form action="/alunos/escola/turmas" method="GET">
                             <input type="hidden" name="escola_id" value="<?= $value['id'] ?>">
                             <button type="submit">selecionar</button>
                         </form>
@@ -96,8 +89,7 @@
     ?>
 
     <?php
-        if(!empty($_POST['turmas_list'])){
-            var_dump($_POST['turmas_list']);
+        if(!empty($turmas_list)){
     ?>
         <table>
             <thead>
@@ -109,7 +101,7 @@
             </thead>
             <tbody>
                 <?php
-                    foreach ($_POST['turmas_list'] as $value) {
+                    foreach ($turmas_list as $value) {
                 ?>
                         <tr>
                             <td><?=$value['ano']?></td>
@@ -133,26 +125,11 @@
 
             <?php
         }
-        elseif (!isset($_POST['turmas_list']) and isset($_GET['escola_id'])){
+        elseif (!isset($turmas_list) and isset($_GET['escola_id'])){
             ?>
             <h3>Nao existem turmas cadastradas nessa escola</h3>
         <?php
         }
         ?>
-
-    <script>
-        $(document).ready(() => {
-            $.ajax({
-                method: "GET",
-                url: "/alunos/get/turmas",
-                data: {
-                    aluno_id: $('#aluno_id').val()
-                },
-                success: (response) => {
-                    alert(response);
-                }
-            })
-        });
-    </script>
 </body>
 </html>

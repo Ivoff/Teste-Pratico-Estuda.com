@@ -37,7 +37,7 @@ $routes = [
     'alunos/turmas/search' => function(){
         AlunoTurmaController::escolaSearch();
     },
-    'alunos/get/turmas' => function(){
+    'alunos/escola/turmas' => function(){
         AlunoTurmaController::getTurmas();
     },
     'turmas' => function(){

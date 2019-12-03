@@ -17,16 +17,24 @@ class AlunoTurmaController extends Controller
             $aluno = new Aluno();
             $aluno->read($_GET['aluno_id']);
 
+            session_destroy();
+            session_start();
+
+            $_SESSION['aluno'] = $aluno;
+
             $view = new View('resources/views/alunos/aluno_turmas.php');
-            $view->with(['turmas' => AlunoTurma::turmasFromAluno($_GET['aluno_id'])], 'SESSION')
-                ->with(['aluno' => $aluno], 'SESSION')
+            $view->with(['aluno' => $aluno])
+                ->with(['turmas' => AlunoTurma::turmasFromAluno($_GET['aluno_id'])])
                 ->redirect();
         }
     }
 
     public static function store()
     {
-        //if(isset($_POST[]))
+        if(isset($_POST['turmas_id']))
+        {
+            var_dump($_POST['turmas_id']);
+        }
     }
 
     public static function escolaSearch()
@@ -52,7 +60,7 @@ class AlunoTurmaController extends Controller
             }
 
             $turmaView = new View('resources/views/alunos/aluno_turmas.php');
-            $turmaView->with(["escola_list" => Escola::search($query)], "POST")
+            $turmaView->with(["escola_list" => Escola::search($query)])
                 ->redirect();
         }
     }
@@ -61,12 +69,17 @@ class AlunoTurmaController extends Controller
     {
         if(isset($_GET['escola_id']))
         {
-            session_start();
             $view = new View('resources/views/alunos/aluno_turmas.php');
-            $view->with(['turmas_list' => Escola::fetchTurmas($_GET['escola_id'])], "SESSION")
-                ->with(['turmas' => AlunoTurma::turmasFromAluno($_SESSION['aluno']->getId())], 'SESSION')
+            $view->with(['turmas_list' => Escola::fetchTurmas($_GET['escola_id'])])
                 ->redirect();
+        }
+    }
 
+    public static function turmasFromAluno(){
+        if(isset($_GET['aluno_id']))
+        {
+            //return AlunoTurma::turmasFromAluno($_GET['aluno_id']);
+            return "asdasd";
         }
     }
 }
