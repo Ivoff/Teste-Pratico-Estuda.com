@@ -12,7 +12,7 @@ class TurmaController extends Controller
     public static function index()
     {
         $turmaView = new View('resources/views/turmas/index.php');
-        $turmaView->with(['list' => Turma::all()], 'POST')->redirect();
+        $turmaView->with(['list' => Turma::all()])->redirect();
     }
 
     public static function store()
@@ -44,8 +44,8 @@ class TurmaController extends Controller
             $turma->read($_GET['edit_id']);
 
             $turmaView = new View('resources/views/turmas/index.php');
-            $turmaView->with(['list' => Turma::all()], 'POST')
-                ->with(['edit_data' => $turma], 'SESSION')
+            $turmaView->with(['list' => Turma::all()])
+                ->with(['edit_data' => $turma])
                 ->redirect();
         }
     }
@@ -85,9 +85,10 @@ class TurmaController extends Controller
             }
 
             $turmaView = new View('resources/views/turmas/index.php');
-            $turmaView->with(["escola_list" => Escola::search($query)], "SESSION")
-                    ->with(['list' => Turma::all()], "POST")
+            $turmaView->with(["escola_list" => Escola::search($query)])
+                    ->with(['list' => Turma::all()])
                     ->redirect();
         }
     }
 }
+

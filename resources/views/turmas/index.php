@@ -7,10 +7,6 @@
         header("Location: /turmas");
         return;
     }
-    elseif (isset($_SESSION['edit_data']) or isset($_SESSION['escola_list']))
-    {
-        session_destroy();
-    }
 
 ?>
 
@@ -21,14 +17,6 @@
 </head>
 <body>
 
-    <form>
-        <input type="hidden" name="search" value="true">
-        Busca<input type="text" name="query" autocomplete="false">
-        <button type="submit">buscar</button>
-    </form>
-
-    <br/>
-
     <form action="/turmas/escolas/search" method="GET">
         <input type="hidden" name="search" value="true">
         Busca Escola<input type="text" name="query" placeholder="search">
@@ -36,7 +24,7 @@
     </form>
 
     <?php
-        if(isset($_SESSION['escola_list'])) {
+        if(isset($escola_list)) {
             ?>
             <table id="escolas">
                 <thead>
@@ -49,7 +37,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        foreach ($_SESSION['escola_list'] as $value) {
+                        foreach ($escola_list as $value) {
                             ?>
                             <tr>
                                 <td><?=$value['nome']?></td>
@@ -76,30 +64,30 @@
         <input type="hidden" name="turma_escola" id="turma_escola">
 
         <input type="hidden" name="turma_id" id="turma_id"
-               value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getId() : "" ?>">
+               value="<?= isset($edit_data) ? $edit_data->getId() : "" ?>">
 
         <div>
             <label for="turma_ano">Ano</label>
             <input type="text" name="turma_ano" id="turma_ano" required
-                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getAno() : "" ?>">
+                   value="<?= isset($edit_data) ? $edit_data->getAno() : "" ?>">
         </div>
 
         <div>
             <label for="turma_nivelEnsino">Nivel de Ensino</label>
             <input type="text" name="turma_nivelEnsino" id="turma_nivelEnsino" required
-                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getNivelEnsino() : "" ?>">
+                   value="<?= isset($edit_data) ? $edit_data->getNivelEnsino() : "" ?>">
         </div>
 
         <div>
             <label for="turma_serie">Serie</label>
             <input type="text" name="turma_serie" id="turma_serie" required
-                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getSerie() : "" ?>">
+                   value="<?= isset($edit_data) ? $edit_data->getSerie() : "" ?>">
         </div>
 
         <div>
             <label for="turma_turno">Turno</label>
             <input type="text" name="turma_turno" id="turma_turno" required
-                   value="<?= isset($_SESSION['edit_data']) ? $_SESSION['edit_data']->getTurno() : "" ?>">
+                   value="<?= isset($edit_data) ? $edit_data->getTurno() : "" ?>">
         </div>
 
         <button type="submit" id="create_button">enviar</button>
@@ -116,7 +104,7 @@
         </thead>
         <tbody>
             <?php
-                foreach ($_POST['list'] as $value){
+                foreach ($list as $value){
             ?>
                     <tr>
                         <td><?=$value['escola']->getNome()?></td>
