@@ -43,7 +43,7 @@ class TurmaController extends Controller
             $turma = new Turma();
             $turma->read($_GET['edit_id']);
 
-            $turmaView = new View('resources/views/turmas/index.php');
+            $turmaView = new View('resources/views/turmas/register.php');
             $turmaView->with(['list' => Turma::all()])
                 ->with(['edit_data' => $turma])
                 ->redirect();
@@ -84,10 +84,8 @@ class TurmaController extends Controller
                 }
             }
 
-            $turmaView = new View('resources/views/turmas/index.php');
-            $turmaView->with(["escola_list" => Escola::search($query)])
-                    ->with(['list' => Turma::all()])
-                    ->redirect();
+            $turmaView = new View('resources/views/turmas/register.php');
+            $turmaView->with(["escola_list" => Escola::search($query)])->redirect();
         }
     }
 }

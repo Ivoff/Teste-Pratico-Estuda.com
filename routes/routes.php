@@ -46,6 +46,9 @@ $routes = [
     'turmas' => function(){
         TurmaController::index();
     },
+    'turmas/view/create' => function(){
+        require 'resources/views/turmas/register.php';
+    },
     'turmas/create' => function(){
         TurmaController::store();
     },

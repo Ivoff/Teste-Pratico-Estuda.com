@@ -31,7 +31,8 @@ class EscolaController extends Controller
             $escola->save();
         }
 
-        Router::route('/escolas');
+        //Router::route('/escolas');
+        header("Location: /escolas");
     }
 
     public static function edit()
@@ -55,7 +56,8 @@ class EscolaController extends Controller
             $escola->delete();
         }
 
-        Router::route('/escolas');
+        //Router::route('/escolas');
+        header("Location: /escolas");
     }
 
     public static function search()
