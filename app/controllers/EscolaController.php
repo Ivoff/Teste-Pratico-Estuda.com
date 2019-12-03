@@ -31,6 +31,7 @@ class EscolaController extends Controller
 
             $escola->save();
         }
+
         Router::route('escolas');
     }
 
@@ -41,10 +42,8 @@ class EscolaController extends Controller
             $escola = new Escola();
             $escola->read($_GET['edit_id']);
 
-            $escolaView = new View('resources/views/escolas/index.php');
-            $escolaView->with(['list' => Escola::all()])
-                ->with(['edit_data' => $escola])
-                ->redirect();
+            $escolaView = new View('resources/views/escolas/register.php');
+            $escolaView->with(['edit_data' => $escola])->redirect();
         }
     }
 

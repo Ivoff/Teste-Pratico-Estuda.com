@@ -61,6 +61,9 @@ $routes = [
     'escolas' => function(){
         EscolaController::index();
     },
+    'escolas/view/create' => function(){
+        require 'resources/views/escolas/register.php';
+    },
     'escolas/create' => function(){
         EscolaController::store();
     },
