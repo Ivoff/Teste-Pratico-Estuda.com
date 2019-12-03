@@ -10,9 +10,9 @@
 
         $genero = null;
 
-        if(isset($_SESSION['edit_data']))
+        if(isset($edit_data))
         {
-            $currentAluno = $_SESSION['edit_data'];
+            $currentAluno = $edit_data;
             $genero = $currentAluno->getGenero();
         }
     ?>

@@ -5,6 +5,7 @@ namespace Resources\Views;
 class View {
 
     private $filePath;
+    private $data = [];
 
     public function __construct($file)
     {
@@ -13,28 +14,22 @@ class View {
 
     public function redirect()
     {
+        if(!empty($this->data))
+        {
+            foreach ($this->data as $key => $value)
+            {
+                ${$key} = $value;
+            }
+        }
         require $this->filePath;
     }
 
-    public function with($data, $method)
+    public function with($data)
     {
-        if($method == "POST")
+        foreach ($data as $key => $value)
         {
-            foreach ($data as $key => $value)
-            {
-                $_POST[$key] = $value;
-            }
+            $this->data[$key] = $value;
         }
-        elseif ($method == 'SESSION')
-        {
-            session_start();
-
-            foreach ($data as $key => $value)
-            {
-                $_SESSION[$key] = $value;
-            }
-        }
-
 
         return $this;
     }

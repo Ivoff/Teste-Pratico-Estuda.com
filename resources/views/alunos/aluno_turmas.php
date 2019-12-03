@@ -1,13 +1,22 @@
 <!DOCTYPE HTML>
-
+<?php
+    if(isset($_POST['turmas_list']))
+    {
+        $params = $_SESSION['aluno']->getId();
+        header("Location: /alunos/turmas?aluno_id=$params");
+    }
+?>
 <html>
     <head>
+        <script src="/resources/js/jquery"></script>
         <title>Turmas Cadastradas</title>
     </head>
 <body>
 
+    <input type="hidden" id="aluno_id" name="aluno_id" value="<?=$_SESSION['aluno']->getId()?>">
+
     <?php
-        if(!empty($_SESSION['turmas'])){
+        if(!empty($_GET['turmas'])){
     ?>
         <table>
             <thead>
@@ -19,7 +28,7 @@
             </thead>
             <tbody>
             <?php
-            foreach ($_SESSION['turmas'] as $values) {
+            foreach ($_GET['turmas'] as $values) {
                 ?>
                 <tr>
                     <td><?=$values['ano']?></td>
@@ -87,7 +96,8 @@
     ?>
 
     <?php
-        if(!empty($_SESSION['turmas_list'])){
+        if(!empty($_POST['turmas_list'])){
+            var_dump($_POST['turmas_list']);
     ?>
         <table>
             <thead>
@@ -99,27 +109,50 @@
             </thead>
             <tbody>
                 <?php
-                    foreach ($_SESSION['turmas_list'] as $value) {
+                    foreach ($_POST['turmas_list'] as $value) {
                 ?>
                         <tr>
                             <td><?=$value['ano']?></td>
                             <td><?=$value['nivel_ensino']?></td>
                             <td><?=$value['serie']?></td>
                             <td><?=$value['turno']?></td>
-                            <td><input type="checkbox" value="<?=$value['id']?>"></td>
+                            <td>
+                                <input type="checkbox" name="selected_turmas" value="<?=$value['id']?>">
+                            </td>
                         </tr>
                 <?php
                     }
                 ?>
             </tbody>
         </table>
+
+        <form id="selected_turmas_form">
+            <input type="hidden" name="turmas_id" value="true">
+            <button type="submit" id="turma_add" name="turma_add_button">adicionar</button>
+        </form>
+
             <?php
         }
-        elseif ((empty($_SESSION['turmas_list']) or !isset($_SESSION['turmas_list'])) and isset($_GET['escola_id']) ){
+        elseif (!isset($_POST['turmas_list']) and isset($_GET['escola_id'])){
             ?>
             <h3>Nao existem turmas cadastradas nessa escola</h3>
         <?php
         }
         ?>
+
+    <script>
+        $(document).ready(() => {
+            $.ajax({
+                method: "GET",
+                url: "/alunos/get/turmas",
+                data: {
+                    aluno_id: $('#aluno_id').val()
+                },
+                success: (response) => {
+                    alert(response);
+                }
+            })
+        });
+    </script>
 </body>
 </html>

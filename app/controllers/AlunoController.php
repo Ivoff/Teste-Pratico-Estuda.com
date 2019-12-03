@@ -12,7 +12,7 @@ class AlunoController extends Controller
     {
         //'resources/views/alunos/index.php'
         $alunoView = new View('resources/views/alunos/index.php');
-        $alunoView->with(["list" => Aluno::all()], "POST")->redirect();
+        $alunoView->with(["list" => Aluno::all()])->redirect();
     }
 
     public static function store()
@@ -41,7 +41,7 @@ class AlunoController extends Controller
             $aluno->read($_GET['edit_id']);
 
             $alunoView = new View('resources/views/alunos/register.php');
-            $alunoView->with(['edit_data' => $aluno], "SESSION")->redirect();
+            $alunoView->with(['edit_data' => $aluno])->redirect();
         }
     }
 
@@ -82,7 +82,7 @@ class AlunoController extends Controller
             }
 
             $alunoView = new View('resources/views/alunos/index.php');
-            $alunoView->with(["list" => Aluno::search($query)], "POST")->redirect();
+            $alunoView->with(["list" => Aluno::search($query)])->redirect();
         }
     }
 }

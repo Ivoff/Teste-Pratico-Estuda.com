@@ -45,7 +45,7 @@
         </thead>
         <tbody>
             <?php
-                foreach ($_POST['list'] as $value ) {
+                foreach ($list as $value ) {
                 ?>
                     <tr>
                         <td><?=$value['nome']?></td>
