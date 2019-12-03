@@ -13,6 +13,54 @@ class AlunoTurma implements IModel
     private $aluno;
     private $turma;
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAluno()
+    {
+        return $this->aluno;
+    }
+
+    /**
+     * @param mixed $aluno
+     */
+    public function setAluno($aluno)
+    {
+        $this->aluno = $aluno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTurma()
+    {
+        return $this->turma;
+    }
+
+    /**
+     * @param mixed $turma
+     */
+    public function setTurma($turma)
+    {
+        $this->turma = $turma;
+    }
+
     public function save()
     {
         if($this->getId() > 0)

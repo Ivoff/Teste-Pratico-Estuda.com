@@ -7,6 +7,7 @@ use App\Models\AlunoTurma;
 use App\Models\Escola;
 use App\Models\Turma;
 use Resources\Views\View;
+use Routes\Router;
 
 class AlunoTurmaController extends Controller
 {
@@ -31,9 +32,30 @@ class AlunoTurmaController extends Controller
 
     public static function store()
     {
+        session_start();
+
         if(isset($_POST['turmas_id']))
         {
-            var_dump($_POST['turmas_id']);
+            $turma = new Turma();
+            for($i = 0; $i < (int) $_POST['turmas_qnt']; $i += 1)
+            {
+                $turma->read($_POST["turma_id_$i"]);
+
+                $alunoTurma = new AlunoTurma();
+                $alunoTurma->setAluno($_SESSION['aluno']);
+                $alunoTurma->setTurma($turma);
+
+                $alunoTurma->save();
+            }
+
+            $aluno_id = $_SESSION['aluno']->getId();
+
+            header("Location: /alunos/turmas?aluno_id=$aluno_id");
+
+//            $view = new View('resources/views/alunos/aluno_turmas.php');
+//            $view->with(['aluno' => $_SESSION['aluno']])
+//                ->with(['turmas' => AlunoTurma::turmasFromAluno($_SESSION['aluno']->getId())])
+//                ->redirect();
         }
     }
 
@@ -59,8 +81,11 @@ class AlunoTurmaController extends Controller
                 }
             }
 
+            session_start();
+
             $turmaView = new View('resources/views/alunos/aluno_turmas.php');
             $turmaView->with(["escola_list" => Escola::search($query)])
+                ->with(['turmas' => AlunoTurma::turmasFromAluno($_SESSION['aluno']->getId())])
                 ->redirect();
         }
     }
@@ -69,8 +94,11 @@ class AlunoTurmaController extends Controller
     {
         if(isset($_GET['escola_id']))
         {
+            session_start();
+
             $view = new View('resources/views/alunos/aluno_turmas.php');
             $view->with(['turmas_list' => Escola::fetchTurmas($_GET['escola_id'])])
+                ->with(['turmas' => AlunoTurma::turmasFromAluno($_SESSION['aluno']->getId())])
                 ->redirect();
         }
     }

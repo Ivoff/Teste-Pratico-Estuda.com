@@ -8,10 +8,12 @@
 
 
     <?php
+        session_start();
         if(!empty($turmas)){
     ?>
         <table>
             <thead>
+                <th>Escola</th>
                 <th>Ano</th>
                 <th>Nivel de Ensino</th>
                 <th>Serie</th>
@@ -23,12 +25,16 @@
             foreach ($turmas as $values) {
                 ?>
                 <tr>
-                    <td><?=$values['ano']?></td>
-                    <td><?=$values['nivel_ensino']?></td>
-                    <td><?=$values['serie']?></td>
-                    <td><?=$values['turno'];?></td>
+                    <td><?=$values->getEscola()->getNome()?></td>
+                    <td><?=$values->getAno()?></td>
+                    <td><?=$values->getNivelEnsino()?></td>
+                    <td><?=$values->getSerie()?></td>
+                    <td><?=$values->getTurno();?></td>
                     <td>
-                        <button>desvincular</button>
+                        <form>
+                            <input type="hidden" name="destroy_id" value="<?=$values->getId()?>">
+                            <button></button>
+                        </form>
                     </td>
                 </tr>
                 <?php
@@ -93,6 +99,7 @@
     ?>
         <table>
             <thead>
+                <th>id</th>
                 <th>Ano</th>
                 <th>Nivel de Ensino</th>
                 <th>Serie</th>
@@ -104,6 +111,7 @@
                     foreach ($turmas_list as $value) {
                 ?>
                         <tr>
+                            <td><?=$value['id']?></td>
                             <td><?=$value['ano']?></td>
                             <td><?=$value['nivel_ensino']?></td>
                             <td><?=$value['serie']?></td>
@@ -118,7 +126,7 @@
             </tbody>
         </table>
 
-        <form id="selected_turmas_form">
+        <form action="/alunos/turmas/create" method="POST" id="selected_turmas_form">
             <input type="hidden" name="turmas_id" value="true">
             <button type="submit" id="turma_add" name="turma_add_button">adicionar</button>
         </form>
@@ -130,6 +138,32 @@
             <h3>Nao existem turmas cadastradas nessa escola</h3>
         <?php
         }
+
         ?>
+
+    <script>
+        $(document).ready(() => {
+            $("#turma_add").on("click", () => {
+
+                let turmas = [];
+
+                $("input[name=selected_turmas]:checked").each(function(){
+                    turmas.push($(this).val());
+                });
+
+                let form = '#selected_turmas_form';
+
+                $(form).append(
+                    "<input type='hidden' name='turmas_qnt' value='"+turmas.length+"'>"
+                );
+
+                for(let i = 0; i < turmas.length; i += 1){
+                    $(form).append(
+                        "<input type='hidden' name='turma_id_"+i.toString()+"' value=\""+turmas[i]+"\">"
+                    )
+                }
+            });
+        });
+    </script>
 </body>
 </html>

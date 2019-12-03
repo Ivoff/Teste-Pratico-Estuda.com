@@ -113,8 +113,7 @@ class Turma implements IModel {
 
     public function read($id)
     {
-        $sql = "SELECT * FROM turmas WHERE id = $id LIMIT 1";
-
+        $sql = "SELECT * FROM turmas WHERE id = ".$id." LIMIT 1";
         $con = Connection::con();
 
         try{
@@ -133,7 +132,6 @@ class Turma implements IModel {
             $this->setSerie($result['serie']);
             $this->setTurno($result['turno']);
             $this->setId($result['id']);
-
 
             return;
         }catch (Exception $e)
