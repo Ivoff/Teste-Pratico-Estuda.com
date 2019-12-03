@@ -13,7 +13,7 @@ class EscolaController extends Controller
     public static function index()
     {
         $escolaView = new View('resources/views/escolas/index.php');
-        $escolaView->with(['list' => Escola::all()], "POST")->redirect();
+        $escolaView->with(['list' => Escola::all()])->redirect();
     }
 
     public static function store()
@@ -42,8 +42,8 @@ class EscolaController extends Controller
             $escola->read($_GET['edit_id']);
 
             $escolaView = new View('resources/views/escolas/index.php');
-            $escolaView->with(['list' => Escola::all()], "POST")
-                ->with(['edit_data' => $escola], "SESSION")
+            $escolaView->with(['list' => Escola::all()])
+                ->with(['edit_data' => $escola])
                 ->redirect();
         }
     }
@@ -86,7 +86,7 @@ class EscolaController extends Controller
             }
 
             $escolaView = new View('resources/views/escolas/index.php');
-            $escolaView->with(["list" => Escola::search($query)], "POST")
+            $escolaView->with(["list" => Escola::search($query)])
                 ->redirect();
         }
     }
