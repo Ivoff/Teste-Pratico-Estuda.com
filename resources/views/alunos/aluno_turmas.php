@@ -25,15 +25,15 @@
             foreach ($turmas as $values) {
                 ?>
                 <tr>
-                    <td><?=$values->getEscola()->getNome()?></td>
-                    <td><?=$values->getAno()?></td>
-                    <td><?=$values->getNivelEnsino()?></td>
-                    <td><?=$values->getSerie()?></td>
-                    <td><?=$values->getTurno();?></td>
+                    <td><?=$values['turma']->getEscola()->getNome()?></td>
+                    <td><?=$values['turma']->getAno()?></td>
+                    <td><?=$values['turma']->getNivelEnsino()?></td>
+                    <td><?=$values['turma']->getSerie()?></td>
+                    <td><?=$values['turma']->getTurno();?></td>
                     <td>
-                        <form>
-                            <input type="hidden" name="destroy_id" value="<?=$values->getId()?>">
-                            <button></button>
+                        <form action="/alunos/escola/destroy" method="POST">
+                            <input type="hidden" name="destroy_id" value="<?=$values['id']?>">
+                            <button type="submit">desvincular</button>
                         </form>
                     </td>
                 </tr>

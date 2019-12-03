@@ -103,11 +103,19 @@ class AlunoTurmaController extends Controller
         }
     }
 
-    public static function turmasFromAluno(){
-        if(isset($_GET['aluno_id']))
+    public static function destroy()
+    {
+        if(isset($_POST['destroy_id']))
         {
-            //return AlunoTurma::turmasFromAluno($_GET['aluno_id']);
-            return "asdasd";
+            $alunoTurma = new AlunoTurma();
+            $alunoTurma->read($_POST['destroy_id']);
+            $alunoTurma->delete();
+
+            session_start();
+
+            $aluno_id = $_SESSION['aluno']->getId();
+
+            header("Location: /alunos/turmas?aluno_id=$aluno_id");
         }
     }
 }

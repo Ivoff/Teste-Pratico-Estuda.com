@@ -37,6 +37,9 @@ $routes = [
     'alunos/turmas/search' => function(){
         AlunoTurmaController::escolaSearch();
     },
+    'alunos/escola/destroy' => function(){
+        AlunoTurmaController::destroy();
+    },
     'alunos/escola/turmas' => function(){
         AlunoTurmaController::getTurmas();
     },
