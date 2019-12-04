@@ -42,7 +42,7 @@
 </nav>
 
     <div class="container">
-        <p class="text-center"><a class="btn btn-outline-primary " href="/escolas/view/create">Adicionar escolas</a></p>
+        <p class="text-center"><a class="btn btn-outline-success" href="/escolas/view/create">Adicionar escolas</a></p>
         <table class="table border shadow">
             <thead>
                 <th>Nome</th>
@@ -69,20 +69,20 @@
                                 <form action="/escolas/edit" method="GET">
                                     <input type="hidden" name="edit" value="true">
                                     <input type="hidden" name="edit_id" value="<?=$value['escola']['id']?>">
-                                    <button class="btn btn-warning" type="submit">editar</button>
+                                    <button class="btn btn-outline-info" type="submit">editar</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="/escolas/more" method="GET">
+                                    <input type="hidden" name="escola_id" value="<?=$value['escola']['id']?>">
+                                    <button class="btn btn-outline-primary" type="submit">mais</button>
                                 </form>
                             </td>
                             <td>
                                 <form action="/escolas/destroy" method="POST">
                                     <input type="hidden" name="destroy" value="true">
                                     <input type="hidden" name="destroy_id" value="<?=$value['escola']['id']?>">
-                                    <button class="btn btn-danger" type="submit">excluir</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="/escolas/more" method="GET">
-                                    <input type="hidden" name="escola_id" value="<?=$value['escola']['id']?>">
-                                    <button class="btn btn-success" type="submit">mais</button>
+                                    <button class="btn btn-outline-danger" type="submit">excluir</button>
                                 </form>
                             </td>
                         </tr>

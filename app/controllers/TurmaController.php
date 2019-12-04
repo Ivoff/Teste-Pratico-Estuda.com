@@ -62,7 +62,7 @@ class TurmaController extends Controller
         Router::route('turmas');
     }
 
-    public static function escolaSearch()
+    public static function  escolaSearch()
     {
         if(isset($_GET['search']))
         {
