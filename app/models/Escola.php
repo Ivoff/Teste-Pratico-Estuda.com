@@ -216,7 +216,21 @@ class Escola implements IModel {
             $statement = $con->prepare($sql);
             $statement->execute();
 
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            $escolas = [];
+
+            for($i = 0; $i < count($result); $i += 1)
+            {
+                $sql = "CALL escola_qnt_alunos(:escola_id)";
+
+                $statement = $con->prepare($sql);
+                $statement->execute([":escola_id" => $result[$i]['id']]);
+                $aux = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $escolas[$i] = ['escola' => $result[$i], 'qnt_alunos' => $aux[0]['qnt_alunos']];
+            }
+
+            return $escolas;
 
         }catch (Exception $e)
         {

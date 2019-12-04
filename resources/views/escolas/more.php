@@ -25,7 +25,7 @@
                         <td><?=$value['serie']?></td>
                         <td><?=$value['turno']?></td>
                         <td>
-                            <form action="/">
+                            <form action="/turmas/more" method="GET">
                                 <input type="hidden" name="turma_id" value="<?=$value['id']?>">
                                 <button type="submit">mais</button>
                             </form>

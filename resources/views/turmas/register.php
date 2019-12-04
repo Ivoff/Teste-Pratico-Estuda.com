@@ -46,14 +46,6 @@
         <?php
     }
     ?>
-
-    <?php
-        var_dump($edit_data->getEscola()->getId());
-    ?>
-
-    <?= isset($escola) ? $escola->getId() :
-        isset($edit_data) ? $edit_data->getEscola()->getId() : "" ?>
-
     <form action="/turmas/create" method="POST">
         <input type="hidden" name="turma_create" value="true">
 

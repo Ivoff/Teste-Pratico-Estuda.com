@@ -30,6 +30,7 @@
             <th>Cidade</th>
             <th>Estado</th>
             <th>Situacao</th>
+            <th>Alunos</th>
             <th colspan="3"></th>
         </thead>
         <tbody>
@@ -37,31 +38,30 @@
                 foreach ($list as $value){
             ?>
                     <tr>
-                        <td><?=$value['nome']?></td>
-                        <td><?=$value['endereco']?></td>
-                        <td><?=$value['cidade']?></td>
-                        <td><?=$value['estado']?></td>
-                        <td><?=$value['situacao']?></td>
-                        <td>
-
-                        </td>
+                        <td><?=$value['escola']['nome']?></td>
+                        <td><?=$value['escola']['endereco']?></td>
+                        <td><?=$value['escola']['cidade']?></td>
+                        <td><?=$value['escola']['estado']?></td>
+                        <td><?=$value['escola']['situacao']?></td>
+                        <td><?=!empty($value['qnt_alunos']) ?
+                                $value['qnt_alunos'] : "0"?></td>
                         <td>
                             <form action="/escolas/edit" method="GET">
                                 <input type="hidden" name="edit" value="true">
-                                <input type="hidden" name="edit_id" value="<?=$value['id']?>">
+                                <input type="hidden" name="edit_id" value="<?=$value['escola']['id']?>">
                                 <button type="submit">editar</button>
                             </form>
                         </td>
                         <td>
                             <form action="/escolas/destroy" method="POST">
                                 <input type="hidden" name="destroy" value="true">
-                                <input type="hidden" name="destroy_id" value="<?=$value['id']?>">
+                                <input type="hidden" name="destroy_id" value="<?=$value['escola']['id']?>">
                                 <button type="submit">excluir</button>
                             </form>
                         </td>
                         <td>
                             <form action="/escolas/more" method="GET">
-                                <input type="hidden" name="escola_id" value="<?=$value['id']?>">
+                                <input type="hidden" name="escola_id" value="<?=$value['escola']['id']?>">
                                 <button type="submit">mais</button>
                             </form>
                         </td>
