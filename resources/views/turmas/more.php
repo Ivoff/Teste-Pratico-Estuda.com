@@ -27,7 +27,10 @@
                         <td><?= $value['aluno']->getDatNasc() ?></td>
                         <td><?= $value['aluno']->getGenero() ?></td>
                         <td>
-                            <button>mais</button>
+                            <form action="/alunos/turmas" method="GET">
+                                <input type="hidden" name="aluno_id" value="<?=$value['id']?>">
+                                <button type="submit">turmas</button>
+                            </form>
                         </td>
                     </tr>
                 <?php
