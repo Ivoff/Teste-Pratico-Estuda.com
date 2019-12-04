@@ -25,7 +25,10 @@
                         <td><?=$value['serie']?></td>
                         <td><?=$value['turno']?></td>
                         <td>
-                            <button>mais</button>
+                            <form action="/">
+                                <input type="hidden" name="turma_id" value="<?=$value['id']?>">
+                                <button type="submit">mais</button>
+                            </form>
                         </td>
                     </tr>
                 <?php

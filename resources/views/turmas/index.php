@@ -25,7 +25,7 @@
             <th>Nivel de Ensino</th>
             <th>Serie</th>
             <th>Turno</th>
-            <th colspan="2"></th>
+            <th colspan="3"></th>
         </thead>
         <tbody>
             <?php
@@ -49,6 +49,12 @@
                                 <input type="hidden" name="edit" value="true">
                                 <input type="hidden" name="edit_id" value="<?=$value['id']?>">
                                 <button type="submit">editar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/turmas/more" method="GET">
+                                <input type="hidden" name="turma_id" value="<?=$value['id']?>">
+                                <button type="submit">mais</button>
                             </form>
                         </td>
                     </tr>

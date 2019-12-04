@@ -61,6 +61,9 @@ $routes = [
     'turmas/escolas/search' => function(){
         TurmaController::escolaSearch();
     },
+    'turmas/more' => function(){
+        AlunoTurmaController::getAlunos();
+    },
     'escolas' => function(){
         EscolaController::index();
     },

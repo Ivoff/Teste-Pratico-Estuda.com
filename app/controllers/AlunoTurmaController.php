@@ -103,6 +103,19 @@ class AlunoTurmaController extends Controller
         }
     }
 
+    public static function getAlunos()
+    {
+        if(isset($_GET['turma_id']))
+        {
+            $turma = new Turma();
+            $turma->read($_GET['turma_id']);
+
+            $view = new View('resources/views/turmas/more.php');
+            $view->with(["alunos" => AlunoTurma::alunosFromTurma($_GET['turma_id'])])
+                ->with(["turma" => $turma])->redirect();
+        }
+    }
+
     public static function destroy()
     {
         if(isset($_POST['destroy_id']))

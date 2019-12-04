@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Controllers\AlunoTurmaController;
 use Database\Connection;
 use Exception;
 use PDO;
@@ -202,6 +203,37 @@ class AlunoTurma implements IModel
             return $turmas;
 
         }catch (Exception $e)
+        {
+            die($e->getMessage());
+        }
+    }
+
+    public static function alunosFromTurma($id)
+    {
+        $sql = "SELECT * FROM aluno_turma where turma_id = $id";
+
+        $con = Connection::con();
+
+        try
+        {
+
+            $statement = $con->prepare($sql);
+            $statement->execute();
+
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            $alunos = [];
+
+            for($i = 0; $i < count($result); $i += 1)
+            {
+                $aluno = new Aluno();
+                $aluno->read($result[$i]['aluno_id']);
+                $alunos[$i] = ['aluno' => $aluno, 'id' => $result[$i]['id']];
+            }
+
+            return $alunos;
+
+        }catch(Exception $e)
         {
             die($e->getMessage());
         }
