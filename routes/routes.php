@@ -99,6 +99,10 @@ $routes = [
         header("Content-Type: text/css");
         require 'resources/assets/css/main.css';
     },
+    'resources/css/index' => function(){
+        header("Content-Type: text/css");
+        require 'resources/assets/css/index.css';
+    },
     'resources/js/bootstrap' => function(){
         require 'resources/assets/js/bootstrap.min.js';
     },

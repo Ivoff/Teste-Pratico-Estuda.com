@@ -11,35 +11,35 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap">
-    <link rel="stylesheet" type="text/css" href="/resources/css/main">
+    <link rel="stylesheet" type="text/css" href="/resources/css/index">
     <script src="/resources/js/jquery"></script>
     <title>Escolas</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark row">
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav col">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="turmas">Turmas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="alunos">Alunos</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="escolas">Escolas</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark row">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav col">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="turmas">Turmas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="alunos">Alunos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="escolas">Escolas</a>
+                </li>
+            </ul>
 
-        <form class="form-inline col d-flex flex-row-reverse" action="/escolas/search" method="GET">
-            <input type="hidden" name="search" value="true">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            <input class="form-control mr-sm-2" type="text" name="query" placeholder="Escola" aria-label="Search">
-        </form>
-    </div>
-</nav>
+            <form class="form-inline col d-flex flex-row-reverse" action="/escolas/search" method="GET">
+                <input type="hidden" name="search" value="true">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" name="query" placeholder="Escola" aria-label="Search">
+            </form>
+        </div>
+    </nav>
 
     <div class="container">
         <p class="text-center"><a class="btn btn-outline-success" href="/escolas/view/create">Adicionar escolas</a></p>
