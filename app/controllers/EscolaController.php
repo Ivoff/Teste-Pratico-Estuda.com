@@ -106,4 +106,27 @@ class EscolaController extends Controller
         }
     }
 
+    public static function api()
+    {
+        if(isset($_GET['nome']) and isset($_GET['estado']))
+        {
+            $nome = $_GET['nome'];
+            $estado = $_GET['estado'];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, "http://educacao.dadosabertosbr.com/api/escolas/buscaavancada?nome=$nome&estado=$estado");
+            $result = curl_exec($ch);
+            print_r($result);
+        }
+        elseif(isset($_GET['cod']))
+        {
+            $code = $_GET['cod'];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, "http://educacao.dadosabertosbr.com/api/escola/$code");
+            $result = curl_exec($ch);
+            print_r($result);
+        }
+    }
+
 }

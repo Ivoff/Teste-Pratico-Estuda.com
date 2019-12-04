@@ -88,4 +88,7 @@ $routes = [
     'resources/js/jquery' => function(){
         require 'resources/assets/js/jquery-3.4.1.min.js';
     },
+    'escolas/api' => function(){
+        EscolaController::api();
+    }
 ];
