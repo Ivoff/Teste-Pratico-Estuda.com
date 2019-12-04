@@ -69,8 +69,6 @@
                                 success: function(response){
                                     let data = JSON.parse(response);
 
-                                    console.log(data);
-
                                     $('#escola_nome').val(data.nome);
                                     $('#escola_estado').val(data.siglaUf);
                                     $('#escola_cidade').val(data.nomeMunicipio);

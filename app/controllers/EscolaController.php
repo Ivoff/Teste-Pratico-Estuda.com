@@ -85,7 +85,6 @@ class EscolaController extends Controller
                         $query = $query . '+' . $pieces[$i] . ' ';
                 }
             }
-
             $escolaView = new View('resources/views/escolas/index.php');
             $escolaView->with(["list" => Escola::search($query)])
                 ->redirect();

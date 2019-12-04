@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <script src="/resources/js/jquery"></script>
     <title><?=$escola->getNome()?></title>
 </head>
 <body>
