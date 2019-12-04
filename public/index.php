@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <script src="/resources/js/jquery"></script>
+    <script src="/resources/js/bootstrap"></script>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap">
     <link rel="stylesheet" type="text/css" href="/resources/css/main">
-    <script src="/resources/js/jquery"></script>
     <title>Home Page</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
@@ -22,6 +23,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="alunos">Alunos</a>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown link
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </nav>
