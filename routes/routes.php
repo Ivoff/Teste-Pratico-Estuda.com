@@ -85,10 +85,18 @@ $routes = [
     'escolas/search' => function(){
         EscolaController::search();
     },
+    'escolas/api' => function(){
+        EscolaController::api();
+    },
     'resources/js/jquery' => function(){
         require 'resources/assets/js/jquery-3.4.1.min.js';
     },
-    'escolas/api' => function(){
-        EscolaController::api();
-    }
+    'resources/css/bootstrap' => function(){
+        header("Content-Type: text/css");
+        require 'resources/assets/css/bootstrap.css';
+    },
+    'resources/css/main' => function(){
+        header("Content-Type: text/css");
+        require 'resources/assets/css/main.css';
+    },
 ];
