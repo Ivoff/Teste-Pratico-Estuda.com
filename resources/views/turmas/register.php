@@ -15,20 +15,20 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="alunos">Alunos</a>
+                    <a class="nav-link" href="/alunos">Alunos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="escolas">Escolas</a>
+                    <a class="nav-link" href="/escolas">Escolas</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="turmas">Turmas</a>
+                    <a class="nav-link" href="/turmas">Turmas</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
-        <form class="input-group" action="/turmas/escolas/search" method="GET">
+        <form class="input-group mb-4" action="/turmas/escolas/search" method="GET">
             <input type="hidden" name="search" value="true">
             <label class="form-control bg-light" for="query">Buscar Escolas</label>
             <input class="form-control" id="query" name="query" type="text" name="query" placeholder="Escola">

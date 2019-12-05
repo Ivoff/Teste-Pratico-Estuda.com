@@ -51,6 +51,7 @@
                 <th>Estado</th>
                 <th>Situacao</th>
                 <th>Alunos</th>
+                <th>Criado em</th>
                 <th colspan="3"></th>
             </thead>
             <tbody>
@@ -63,6 +64,7 @@
                             <td><?=$value['escola']['cidade']?></td>
                             <td><?=$value['escola']['estado']?></td>
                             <td><?=$value['escola']['situacao']?></td>
+                            <td><?=$value['escola']['created_at']?></td>
                             <td><?=!empty($value['qnt_alunos']) ?
                                     $value['qnt_alunos'] : "0"?></td>
                             <td>
