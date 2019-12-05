@@ -22,4 +22,5 @@ Arquivo da classe de [conexão](https://github.com/Ivoff/Teste-Pratico-Estuda.co
 O comando abaixo deve ser digitado no terminal na raiz do projeto
  
 ```$ composer install ```
+
 ```$ php -S locahost:8080 bootstrap.php```
