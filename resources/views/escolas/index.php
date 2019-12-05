@@ -43,8 +43,8 @@
 
     <div class="container">
         <p class="text-center"><a class="btn btn-outline-success" href="/escolas/view/create">Adicionar escolas</a></p>
-        <table class="table border shadow">
-            <thead>
+        <table class="table shadow">
+            <thead class="thead-dark">
                 <th>Nome</th>
                 <th>Endereco</th>
                 <th>Cidade</th>
