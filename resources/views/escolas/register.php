@@ -15,13 +15,13 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="turmas">Turmas</a>
+                    <a class="nav-link" href="/turmas">Turmas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="alunos">Alunos</a>
+                    <a class="nav-link" href="/alunos">Alunos</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="escolas">Escolas</a>
+                    <a class="nav-link" href="/escolas">Escolas</a>
                 </li>
             </ul>
 

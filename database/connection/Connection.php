@@ -11,7 +11,6 @@ class Connection{
     private $dbname;
     private $username;
     private $password;
-    private $con;
 
     public static function con()
     {

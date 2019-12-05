@@ -43,6 +43,9 @@
 
     <div class="container">
         <p class="text-center"><a class="btn btn-outline-success" href="/escolas/view/create">Adicionar escolas</a></p>
+        <?php
+        if(!empty($list)){
+        ?>
         <table class="table shadow">
             <thead class="thead-dark">
                 <th>Nome</th>
@@ -93,6 +96,9 @@
                 ?>
             </tbody>
         </table>
+        <?php
+        }
+        ?>
     </div>
 </body>
 </html>
