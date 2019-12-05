@@ -19,7 +19,7 @@ Arquivo da classe de [conexão](https://github.com/Ivoff/Teste-Pratico-Estuda.co
 
 ### Rodando a aplição
  
-O comando abaixo deve ser digitado no terminal na raiz do projeto
+Os comandos abaixo devem ser digitados no terminal no diretório raiz do projeto
  
 ```$ composer install ```
 
