@@ -37,10 +37,12 @@
         </div>
     </nav>
     <div class="container">
+
+        <p class="text-center"><a class="btn btn-outline-success" href="/turmas/view/create">Adicionar turmas</a></p>
+
     <?php
     if(!empty($list)){
     ?>
-        <p class="text-center"><a class="btn btn-outline-success" href="/turmas/view/create">Adicionar turmas</a></p>
         <table class="table shadow">
             <thead class="thead-dark">
                 <th>Escola</th>
@@ -86,12 +88,6 @@
                 ?>
             </tbody>
         </table>
-        <?php
-        }
-        else
-        {
-        ?>
-            <h3>Vazio</h3>
         <?php
         }
         ?>
